@@ -39,4 +39,14 @@
     <servlet-name>FailServlet</servlet-name>
     <url-pattern>/FailServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FilmoviServlet</display-name>
+    <servlet-name>FilmoviServlet</servlet-name>
+    <servlet-class>aplikacija.FilmoviServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FilmoviServlet</servlet-name>
+    <url-pattern>/FilmoviServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

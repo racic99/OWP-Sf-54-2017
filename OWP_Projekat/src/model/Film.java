@@ -7,10 +7,10 @@ public class Film {
 	private String reziser;
 	private String glumci;
 	private String zanrovi;
-	private int trajanje;
+	private String trajanje;
 	private String distributer;
 	private String zemljaPorekla;
-	private int godinaProizvodnje;
+	private String godinaProizvodnje;
 	private String opis;
 	private boolean aktivan;
 	
@@ -18,8 +18,8 @@ public class Film {
 		this.aktivan=true;
 	}
 
-	public Film(int id, String naziv, String reziser, String glumci, String zanrovi, int trajanje, String distributer,
-			String zemljaPorekla, int godinaProizvodnje, String opis, boolean aktivan) {
+	public Film(int id, String naziv, String reziser, String glumci, String zanrovi, String trajanje, String distributer,
+			String zemljaPorekla, String godinaProizvodnje, String opis, boolean aktivan) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
@@ -74,11 +74,11 @@ public class Film {
 		this.zanrovi = zanrovi;
 	}
 
-	public int getTrajanje() {
+	public String getTrajanje() {
 		return trajanje;
 	}
 
-	public void setTrajanje(int trajanje) {
+	public void setTrajanje(String trajanje) {
 		this.trajanje = trajanje;
 	}
 
@@ -98,11 +98,11 @@ public class Film {
 		this.zemljaPorekla = zemljaPorekla;
 	}
 
-	public int getGodinaProizvodnje() {
+	public String getGodinaProizvodnje() {
 		return godinaProizvodnje;
 	}
 
-	public void setGodinaProizvodnje(int godinaProizvodnje) {
+	public void setGodinaProizvodnje(String godinaProizvodnje) {
 		this.godinaProizvodnje = godinaProizvodnje;
 	}
 
