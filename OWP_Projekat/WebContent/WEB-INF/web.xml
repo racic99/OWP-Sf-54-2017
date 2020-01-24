@@ -49,4 +49,14 @@
     <servlet-name>FilmoviServlet</servlet-name>
     <url-pattern>/FilmoviServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProjekcijeServlet</display-name>
+    <servlet-name>ProjekcijeServlet</servlet-name>
+    <servlet-class>aplikacija.ProjekcijeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProjekcijeServlet</servlet-name>
+    <url-pattern>/ProjekcijeServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
