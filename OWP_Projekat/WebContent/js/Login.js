@@ -1,6 +1,8 @@
 $(document).ready(function() { 
 	var usernameInput = $('#usernameInput');
 	var passwordInput = $('#passwordInput');
+	var greskaLogin = $('#greskaLogin');
+	greskaLogin.hide();
 
 	$('#loginSubmit').on('click', function(event) {
 		var username = usernameInput.val();
@@ -17,13 +19,14 @@ $(document).ready(function() {
 			console.log(data);
 
 			if (data.status == 'fail') {
+				greskaLogin.show();
 				usernameInput.val('');
 				passwordInput.val('');
 
 				return;
 			}
 			if (data.status == 'success') {
-				window.location.replace('Filmovi.html');
+				window.location.replace('Projekcije.html');
 			}
 		});
 		

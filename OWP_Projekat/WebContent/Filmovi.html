@@ -12,20 +12,108 @@
 	table {background-color : dodgerblue; text-align: center; display: inline-block;}
 	td {background-color : lightblue;}
 	div {display: block; text-align: center;}
+	select {text-align:center; background-color: lightblue;}
+	h4 {margin-bottom: 8px;}
+	th {cursor: pointer; border-style: solid;}
+	th:hover {color: silver;}
 </style>
 <body>
 <h2>Svi filmovi</h2>
 <div>
+		<h4>Izaberi nacin pretrage</h4>
+		<select id="nacinPretrage" name="comboBoxPretraga">
+			<option value="7" selected="selected">Nacin pretrage</option>
+			<option value="1">Naziv</option>
+			<option value="2">Zanr</option>
+			<option value="3">Opseg trajanja</option>
+			<option value="4">Distributer</option>
+			<option value="5">Zemlja porekla</option>
+			<option value="6">Opseg godine proizvodnje</option>		
+			
+		</select>
+		<p></p>
 		<table border="1" id="filmoviTabela">
 			<tr>
-				<th>Naziv</th>
-				<th>Zanrovi</th>
-				<th>Trajanje</th>
-				<th>Distributer</th>
-				<th>Zemlja porekla</th>
-				<th>Godina proizvodnje</th>
+				<th onclick="sortTable(0)">Naziv</th>
+				<th onclick="sortTable(1)">Zanrovi</th>
+				<th onclick="sortTable(2)">Trajanje</th>
+				<th onclick="sortTable(3)">Distributer</th>
+				<th onclick="sortTable(4)">Zemlja porekla</th>
+				<th onclick="sortTable(5)">Godina proizvodnje</th>
 			</tr>
 			</table>
 </div>
+
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("filmoviTabela");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc"; 
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      broj1 = parseInt(x.innerHTML);
+      broj2 = parseInt(y.innerHTML);
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc" && !isNaN(broj1) && !isNaN(broj2)) {
+          if (broj1 > broj2) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch= true;
+              break;
+            }
+	}else if (dir == "desc" && !isNaN(broj1) && !isNaN(broj2)) {
+        if (broj1 < broj2) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch= true;
+            break;
+          }
+	} else if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      } 
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;      
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script>
+
 </body>
 </html>
