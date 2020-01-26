@@ -1,0 +1,72 @@
+DROP TABLE IF EXISTS korisnici;
+DROP TABLE IF EXISTS tipovipr;
+DROP TABLE IF EXISTS sale;
+DROP TABLE IF EXISTS filmovi;
+
+CREATE TABLE korisnici (
+	id INTEGER PRIMARY KEY,
+	korime VARCHAR(30) NOT NULL, 
+	lozinka VARCHAR(30) NOT NULL, 
+             datumRegistracije VARCHAR(30) NOT NULL,
+	uloga VARCHAR(8) NOT NULL DEFAULT 'KORISNIK', 
+             aktivan BOOLEAN NOT NULL
+);
+
+INSERT INTO korisnici(korime, lozinka, datumRegistracije, uloga, aktivan) VALUES ('korisnik', 'korisnik', '01/16/2020', 'KORISNIK', 1);
+INSERT INTO korisnici(korime, lozinka, datumRegistracije, uloga, aktivan) VALUES ('admin', 'admin', '01/16/2020', 'ADMIN', 1);
+
+CREATE TABLE tipovipr (
+	id INTEGER PRIMARY KEY,
+	naziv VARCHAR(30) NOT NULL
+);
+
+INSERT INTO tipovipr(naziv) VALUES ('2D');
+INSERT INTO tipovipr(naziv) VALUES ('3D');
+INSERT INTO tipovipr(naziv) VALUES ('4D');
+
+CREATE TABLE sale (
+            id INTEGER PRIMARY KEY,
+            naziv VARCHAR(30) NOT NULL,
+            brojSedista int NOT NULL,
+            tipoviProjekcija VARCHAR(3) NOT NULL
+);
+
+INSERT INTO sale(naziv,brojSedista,tipoviProjekcija) VALUES ('Velika sala', 30, '1,2');
+INSERT INTO sale(naziv,brojSedista,tipoviProjekcija) VALUES ('Srednja sala', 15, '1,3');
+INSERT INTO sale(naziv,brojSedista,tipoviProjekcija) VALUES ('Mala sala', 5, '1');
+
+CREATE TABLE filmovi (
+            id INTEGER PRIMARY KEY,
+            naziv VARCHAR(50) NOT NULL,
+            reziser VARCHAR(30) NOT NULL,
+            glumci VARCHAR(60) NOT NULL,
+            zanrovi VARCHAR(50) NOT NULL,
+            trajanje VARCHAR(3) NOT NULL,
+            distributer VARCHAR(30) NOT NULL,
+            zemljaPorekla VARCHAR(30) NOT NULL,
+            godinaProizvodnje VARCHAR(4) NOT NULL,
+            opis VARCHAR(100) NOT NULL,
+            aktivan BOOLEAN NOT NULL
+);
+
+INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Mrtav ladan', 'Stevo', 'Milan, Marko', 'Zanr1, Zanr2', '90', 'Djoka', 'Srbija', '2000', 'Neki opis', 1);
+INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Kum', 'Marica', 'Filip, Stefan', 'Zanr3, Zanr4', '120', 'Italija prodaksn', 'Italija', '2011', 'Opis neki', 1);
+INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Celavi bez ruku za kosu se vuku', 'Ivica', 'Nemanja, Gojko', 'Zanr2, Zanr3', '110', 'Ker', 'Srbija', '1980', 'Opisan film', 1);
+INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Gubljenje max', 'Stefan', 'Milos, Mladjo', 'Zanr1', '150', 'Gubljenje prodaksn', 'Rusija', '2014', 'Pa gubljenje', 1);
+INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Random film', 'Nikola', 'Mitar, Radoslav', 'Zanr4, Zanr3', '124', 'Random dist', 'Spanija', '1991', 'Random opis', 1);
+INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Web programiranje', 'Marko', 'Pedja, Marko', 'Zanr5', '180', 'FTN', 'Brazil', '2019', 'Projekat', 1);
+
+CREATE TABLE projekcije (
+            id INTEGER PRIMARY KEY,
+            film int NOT NULL,
+            tip int NOT NULL,
+            sala int NOT NULL,
+            datumVreme VARCHAR(50) NOT NULL,
+            cenaKarte int NOT NULL,
+            admin VARCHAR(30) NOT NULL,
+            aktivan BOOLEAN NOT NULL
+);
+
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(1, 1, 1, '02/12/2020 20:00', 300, 'zoki', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(2, 2, 2, '02/01/2020 19:00', 350, 'zoki', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(3, 3, 3, '03/10/2020 22:00', 400, 'zoki', 1);
