@@ -51,9 +51,9 @@ public class ProjekcijeServlet extends HttpServlet {
 		filmovi.add(film2);
 		filmovi.add(film3);
 		
-		Projekcija projekcija1 = new Projekcija(1, 1, 1, 1, "11/02/2020 20:00", 300, "zoki", true);
-		Projekcija projekcija2 = new Projekcija(2, 2, 2, 2, "12/02/2020 19:00", 350, "zoki", true);
-		Projekcija projekcija3 = new Projekcija(3, 3, 3, 3, "10/02/2020 22:00", 400, "zoki", true);
+		Projekcija projekcija1 = new Projekcija(1, 1, 1, 1, "02/12/2020 20:00", 300, "zoki", true);
+		Projekcija projekcija2 = new Projekcija(2, 2, 2, 2, "02/01/2020 19:00", 350, "zoki", true);
+		Projekcija projekcija3 = new Projekcija(3, 3, 3, 3, "03/10/2020 22:00", 400, "zoki", true);
 
 		projekcije.add(projekcija1);
 		projekcije.add(projekcija2);

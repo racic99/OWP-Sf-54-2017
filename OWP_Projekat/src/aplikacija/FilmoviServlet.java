@@ -23,10 +23,16 @@ public class FilmoviServlet extends HttpServlet {
 		Film film1 = new Film(1, "Mrtav ladan", "Stevo", "Milan, Marko", "Zanr1, Zanr2", "90", "Djoka", "Srbija", "2000", "Neki opis", true);
 		Film film2 = new Film(2, "Kum", "Marica", "Filip, Stefan", "Zanr3, Zanr4", "120", "Italija prodaksn", "Italija", "2011", "Opis neki", true);
 		Film film3 = new Film(3, "Celavi bez ruku za kosu se vuku", "Ivica", "Nemanja, Gojko", "Zanr2, Zanr3", "110", "Ker", "Srbija", "1980", "Opisan film", true);
+		Film film4 = new Film(4, "Gubljenje max", "Stefan", "Milos, Mladjo", "Zanr1", "150", "Gubljenje prodaksn", "Rusija", "2014", "Pa gubljenje", true);
+		Film film5 = new Film(5, "Random film", "Nikola", "Mitar, Radoslav", "Zanr4, Zanr3", "124", "Random dist", "Spanija", "1991", "Random opis", true);
+		Film film6 = new Film(6, "Web programiranje", "Marko", "Pedja, Marko", "Zanr5", "180", "FTN", "Brazil", "2019", "Projekat", true);
 
 		filmovi.add(film1);
 		filmovi.add(film2);
 		filmovi.add(film3);
+		filmovi.add(film4);
+		filmovi.add(film5);
+		filmovi.add(film6);
 		
 		Map<String, Object> data = new LinkedHashMap<>();
 		data.put("filmovi", filmovi);
