@@ -76,6 +76,7 @@ public class KorisnikDAO {
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {
+				index = 1;
 				String datumRegistracije = rset.getString(index++);
 				TipKorisnika uloga = TipKorisnika.valueOf(rset.getString(index++));
 				boolean aktivan = rset.getBoolean(index++);
@@ -85,6 +86,7 @@ public class KorisnikDAO {
 		} finally {
 			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
 			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
 		}
 
 		return null;
