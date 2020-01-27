@@ -9,7 +9,7 @@ public class ConnectionManager {
 	private static final String DATABASE_NAME = "bioskop.db";
 	
 	private static final String FILE_SEPARATOR = System.getProperty("file.separator");
-	private static final String WINDOWS_PATH = "C:" + FILE_SEPARATOR + "Baza" + FILE_SEPARATOR + DATABASE_NAME;
+	private static final String WINDOWS_PATH = "C:" + FILE_SEPARATOR + "Baza" + FILE_SEPARATOR + "Bioskop" + FILE_SEPARATOR + DATABASE_NAME;
 	private static final String LINUX_PATH = "SQLite" + FILE_SEPARATOR + DATABASE_NAME;
 	
 	private static final String PATH = WINDOWS_PATH;
@@ -26,6 +26,7 @@ public class ConnectionManager {
 	}
 	
 	public static Connection getConnection() {
+		System.out.println(connection);
 		return connection;
 	}
 	
