@@ -14,6 +14,8 @@ public class KorisnikDAO {
 	public static List<Korisnik> getAll() {
 		List<Korisnik> korisnici = new ArrayList<>();
 
+		ConnectionManager.open();
+		
 		Connection conn = ConnectionManager.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -61,6 +63,9 @@ public class KorisnikDAO {
 	}
 	
 	public static Korisnik get(String korime, String password) throws Exception {
+		
+		ConnectionManager.open();
+		
 		Connection conn = ConnectionManager.getConnection();
 		
 		PreparedStatement pstmt = null;

@@ -13,7 +13,10 @@ public class TipProjekcijeDAO {
 	public static List<TipProjekcije> getAll() {
 		List<TipProjekcije> tipoviProjekcije = new ArrayList<>();
 
+		ConnectionManager.open();
+		
 		Connection conn = ConnectionManager.getConnection();
+		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		try {

@@ -13,6 +13,8 @@ public class FilmDAO {
 	public static List<Film> getAll() {
 		List<Film> filmovi = new ArrayList<>();
 
+		ConnectionManager.open();
+		
 		Connection conn = ConnectionManager.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;

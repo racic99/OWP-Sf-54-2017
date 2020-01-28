@@ -13,7 +13,10 @@ public class SalaDAO {
 	public static List<Sala> getAll() {
 		List<Sala> sale = new ArrayList<>();
 
+		ConnectionManager.open();
+		
 		Connection conn = ConnectionManager.getConnection();
+		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		try {

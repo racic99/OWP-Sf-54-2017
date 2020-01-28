@@ -13,6 +13,8 @@ public class ProjekcijaDAO {
 	public static List<Projekcija> getAll() {
 		List<Projekcija> projekcije = new ArrayList<>();
 
+		ConnectionManager.open();
+		
 		Connection conn = ConnectionManager.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;

@@ -59,7 +59,9 @@
     <servlet-name>ProjekcijeServlet</servlet-name>
     <url-pattern>/ProjekcijeServlet</url-pattern>
   </servlet-mapping>
+  <!--
   <listener>
     <listener-class>aplikacija.InitListener</listener-class>
   </listener>
+  -->
 </web-app>
