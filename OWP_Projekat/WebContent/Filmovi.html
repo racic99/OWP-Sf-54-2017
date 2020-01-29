@@ -31,7 +31,21 @@
 			<option value="6">Opseg godine proizvodnje</option>		
 			
 		</select>
-		<p></p>
+		<br/>
+		<br/>
+		
+		<input name="nazivPretraga" type="text" id="nazivPretragaInput" placeholder="Uneti naziv filma"/>
+		<input name="zanrPretraga" type="text" id="zanrPretragaInput" placeholder="Uneti zanrove"/>
+		<input placeholder="Trajanje od" type="text" id="trajanjeOdInput"/>   <input placeholder="Trajanje do" type="text" id="trajanjeDoInput"/>
+		<input type="submit" value="Pretrazi" id="pretragaTrajanje"/>
+		<input name="distributerPretraga" type="text" id="distributerPretragaInput" placeholder="Uneti distributera"/>
+		<input name="zemljaPoreklaPretraga" type="text" id="zemljaPoreklaPretragaInput" placeholder="Uneti zemlju porekla"/>
+		<input placeholder="Godina od" type="text" id="godinaOdInput"/>   <input placeholder="Godina do" type="text" id="godinaDoInput"/>
+		<input type="submit" value="Pretrazi" id="pretragaGodina"/>
+		
+		<br/>
+		<br/>
+		
 		<table border="1" id="filmoviTabela">
 			<tr>
 				<th onclick="sortTable(0)">Naziv</th>

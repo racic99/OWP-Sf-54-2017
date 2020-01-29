@@ -1,4 +1,25 @@
  $(document).ready(function() {
+	 var nazivPretraga = $('#nazivPretragaInput');
+	 var zanrPretraga = $('#zanrPretragaInput');
+	 var trajanjeOdPretraga = $('#trajanjeOdInput');
+	 var trajanjeDoPretraga = $('#trajanjeDoInput');
+	 var trajanjeButton = $('#pretragaTrajanje');
+	 var distributerPretraga = $('#distributerPretragaInput');
+	 var zemljaPoreklaPretraga = $('#zemljaPoreklaPretragaInput');
+	 var godinaOdPretraga = $('#godinaOdInput');
+	 var godinaDoPretraga = $('#godinaDoInput');
+	 var godinaButton = $('#pretragaGodina');
+	 
+	 nazivPretraga.hide();
+	 zanrPretraga.hide();
+	 trajanjeOdPretraga.hide();
+	 trajanjeDoPretraga.hide();
+	 trajanjeButton.hide();
+	 distributerPretraga.hide();
+	 zemljaPoreklaPretraga.hide();
+	 godinaOdPretraga.hide();
+	 godinaDoPretraga.hide();
+	 godinaButton.hide();
 	 
 		var filmoviTabela = $('#filmoviTabela');
 		

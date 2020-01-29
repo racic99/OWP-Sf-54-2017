@@ -1,5 +1,29 @@
  $(document).ready(function() {
 	 
+	 var nazivFilmaPretraga = $('#nazivFilmaPretragaInput');
+	 var datumOd = $('#datumOdInput');
+	 var vremeOd = $('#vremeOdInput');
+	 var datumDo = $('#datumDoInput');
+	 var vremeDo = $('#vremeDoInput');
+	 var vremePrikazivanjaButton = $('#pretragaVremePrikazivanja');
+	 var tipProjekcijePretraga = $('#tipProjekcijePretragaInput');
+	 var salaPretraga = $('#salaPretragaInput');
+	 var cenaOd = $('#cenaOdInput');
+	 var cenaDo = $('#cenaDoInput');
+	 var cenaButton = $('#pretragaCena');
+	 
+	 nazivFilmaPretraga.hide();
+	 datumOd.hide();
+	 vremeOd.hide();
+	 datumDo.hide();
+	 vremeDo.hide();
+	 vremePrikazivanjaButton.hide();
+	 tipProjekcijePretraga.hide();
+	 salaPretraga.hide();
+	 cenaOd.hide();
+	 cenaDo.hide();
+	 cenaButton.hide();
+	 
 		var projekcijeTabela = $('#projekcijeTabela');
 		
 		$.get('ProjekcijeServlet', function(data){
