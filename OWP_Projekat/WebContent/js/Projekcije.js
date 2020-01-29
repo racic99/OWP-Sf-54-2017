@@ -24,6 +24,8 @@
 	 cenaDo.hide();
 	 cenaButton.hide();
 	 
+	 var nacinPretragePr = $('#nacinPretragePr');
+	 
 		var projekcijeTabela = $('#projekcijeTabela');
 		
 		$.get('ProjekcijeServlet', function(data){
@@ -50,5 +52,95 @@
 				}
 			}
 		});
+		
+		nacinPretragePr.change(function(){
+			  if($(this).val() == '1'){
+				  
+					 nazivFilmaPretraga.show();
+					 datumOd.hide();
+					 vremeOd.hide();
+					 datumDo.hide();
+					 vremeDo.hide();
+					 vremePrikazivanjaButton.hide();
+					 tipProjekcijePretraga.hide();
+					 salaPretraga.hide();
+					 cenaOd.hide();
+					 cenaDo.hide();
+					 cenaButton.hide();
+				  
+			  }else if($(this).val() == '2'){
+
+					 nazivFilmaPretraga.hide();
+					 datumOd.show();
+					 vremeOd.show();
+					 datumDo.show();
+					 vremeDo.show();
+					 vremePrikazivanjaButton.show();
+					 tipProjekcijePretraga.hide();
+					 salaPretraga.hide();
+					 cenaOd.hide();
+					 cenaDo.hide();
+					 cenaButton.hide();
+
+			  }else if($(this).val() == '3'){
+
+					 nazivFilmaPretraga.hide();
+					 datumOd.hide();
+					 vremeOd.hide();
+					 datumDo.hide();
+					 vremeDo.hide();
+					 vremePrikazivanjaButton.hide();
+					 tipProjekcijePretraga.show();
+					 salaPretraga.hide();
+					 cenaOd.hide();
+					 cenaDo.hide();
+					 cenaButton.hide();
+				  
+			  }else if($(this).val() == '4'){
+		
+					 nazivFilmaPretraga.hide();
+					 datumOd.hide();
+					 vremeOd.hide();
+					 datumDo.hide();
+					 vremeDo.hide();
+					 vremePrikazivanjaButton.hide();
+					 tipProjekcijePretraga.hide();
+					 salaPretraga.show();
+					 cenaOd.hide();
+					 cenaDo.hide();
+					 cenaButton.hide();
+					
+			  }else if($(this).val() == '5'){
+
+					 nazivFilmaPretraga.hide();
+					 datumOd.hide();
+					 vremeOd.hide();
+					 datumDo.hide();
+					 vremeDo.hide();
+					 vremePrikazivanjaButton.hide();
+					 tipProjekcijePretraga.hide();
+					 salaPretraga.hide();
+					 cenaOd.show();
+					 cenaDo.show();
+					 cenaButton.show();
+					
+			  }else if($(this).val() == '6'){
+
+					 nazivFilmaPretraga.hide();
+					 datumOd.hide();
+					 vremeOd.hide();
+					 datumDo.hide();
+					 vremeDo.hide();
+					 vremePrikazivanjaButton.hide();
+					 tipProjekcijePretraga.hide();
+					 salaPretraga.hide();
+					 cenaOd.hide();
+					 cenaDo.hide();
+					 cenaButton.hide();
+					 
+					 location.reload();
+
+			  }
+			});
 	 
  });

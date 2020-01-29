@@ -21,6 +21,8 @@
 	 godinaDoPretraga.hide();
 	 godinaButton.hide();
 	 
+	 var nacinPretrage = $('#nacinPretrage');
+	 
 		var filmoviTabela = $('#filmoviTabela');
 		
 		$.get('FilmoviServlet', function(data){
@@ -43,5 +45,104 @@
 				}
 			}
 		});
+		
+		
+		nacinPretrage.change(function(){
+			  if($(this).val() == '1'){
+				  
+					 nazivPretraga.show();
+					 zanrPretraga.hide();
+					 trajanjeOdPretraga.hide();
+					 trajanjeDoPretraga.hide();
+					 trajanjeButton.hide();
+					 distributerPretraga.hide();
+					 zemljaPoreklaPretraga.hide();
+					 godinaOdPretraga.hide();
+					 godinaDoPretraga.hide();
+					 godinaButton.hide();
+				  
+			  }else if($(this).val() == '2'){
+
+					 nazivPretraga.hide();
+					 zanrPretraga.show();
+					 trajanjeOdPretraga.hide();
+					 trajanjeDoPretraga.hide();
+					 trajanjeButton.hide();
+					 distributerPretraga.hide();
+					 zemljaPoreklaPretraga.hide();
+					 godinaOdPretraga.hide();
+					 godinaDoPretraga.hide();
+					 godinaButton.hide();
+
+			  }else if($(this).val() == '3'){
+
+					 nazivPretraga.hide();
+					 zanrPretraga.hide();
+					 trajanjeOdPretraga.show();
+					 trajanjeDoPretraga.show();
+					 trajanjeButton.show();
+					 distributerPretraga.hide();
+					 zemljaPoreklaPretraga.hide();
+					 godinaOdPretraga.hide();
+					 godinaDoPretraga.hide();
+					 godinaButton.hide();
+				  
+			  }else if($(this).val() == '4'){
+		
+					 nazivPretraga.hide();
+					 zanrPretraga.hide();
+					 trajanjeOdPretraga.hide();
+					 trajanjeDoPretraga.hide();
+					 trajanjeButton.hide();
+					 distributerPretraga.show();
+					 zemljaPoreklaPretraga.hide();
+					 godinaOdPretraga.hide();
+					 godinaDoPretraga.hide();
+					 godinaButton.hide();
+					
+			  }else if($(this).val() == '5'){
+
+					 nazivPretraga.hide();
+					 zanrPretraga.hide();
+					 trajanjeOdPretraga.hide();
+					 trajanjeDoPretraga.hide();
+					 trajanjeButton.hide();
+					 distributerPretraga.hide();
+					 zemljaPoreklaPretraga.show();
+					 godinaOdPretraga.hide();
+					 godinaDoPretraga.hide();
+					 godinaButton.hide();
+					
+			  }
+			  else if($(this).val() == '6'){
+
+					 nazivPretraga.hide();
+					 zanrPretraga.hide();
+					 trajanjeOdPretraga.hide();
+					 trajanjeDoPretraga.hide();
+					 trajanjeButton.hide();
+					 distributerPretraga.hide();
+					 zemljaPoreklaPretraga.hide();
+					 godinaOdPretraga.show();
+					 godinaDoPretraga.show();
+					 godinaButton.show();
+
+			  }  else if($(this).val() == '7'){
+
+					 nazivPretraga.hide();
+					 zanrPretraga.hide();
+					 trajanjeOdPretraga.hide();
+					 trajanjeDoPretraga.hide();
+					 trajanjeButton.hide();
+					 distributerPretraga.hide();
+					 zemljaPoreklaPretraga.hide();
+					 godinaOdPretraga.hide();
+					 godinaDoPretraga.hide();
+					 godinaButton.hide();
+					 
+					 location.reload();
+
+			  }
+			});
 	 
  });
