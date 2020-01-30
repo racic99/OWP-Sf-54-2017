@@ -144,5 +144,59 @@
 
 			  }
 			});
+		
+		$('#nazivPretragaInput').keyup(function(event) {
+		    
+			var nazivPretragaValue = nazivPretraga.val();
+			
+			var params = {
+					'nazivPretraga': nazivPretragaValue, 
+			}
+						
+			$.get('FilmoviServlet',params, function(data){
+
+				if (data.status == 'success') {
+					
+					filmoviTabela.find('tr:gt(0)').remove();
+					
+					if (nazivPretragaValue == ''){
+						
+						var filmovi = data.filmovi;			
+						for (f in filmovi) {
+							filmoviTabela.append(
+								
+									'<tr>' + 
+										'<td>' + filmovi[f].naziv + '</td>' + 
+										'<td>' + filmovi[f].zanrovi + '</td>' + 
+										'<td>' + filmovi[f].trajanje + '</td>' + 
+										'<td>' + filmovi[f].distributer + '</td>' + 
+										'<td>' + filmovi[f].zemljaPorekla + '</td>' + 
+										'<td>' + filmovi[f].godinaProizvodnje + '</td>' + 
+									'</tr>' 
+							);
+						}
+						
+				}else{
+										
+					var filmovi = data.nazivPretrage;						
+					for (f in filmovi) {
+						console.log(filmovi[f].naziv);
+						filmoviTabela.append(
+							
+								'<tr>' + 
+									'<td>' + filmovi[f].naziv + '</td>' + 
+									'<td>' + filmovi[f].zanrovi + '</td>' + 
+									'<td>' + filmovi[f].trajanje + '</td>' + 
+									'<td>' + filmovi[f].distributer + '</td>' + 
+									'<td>' + filmovi[f].zemljaPorekla + '</td>' + 
+									'<td>' + filmovi[f].godinaProizvodnje + '</td>' + 
+								'</tr>' 
+						);
+					}
+				}
+				}
+			});
+		    
+		});
 	 
  });

@@ -18,10 +18,14 @@ public class FilmoviServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		String nazivPretraga = request.getParameter("nazivPretraga");
+		
 		List<Film> filmovi = FilmDAO.getAll();
+		List<Film> nazivPretrage = FilmDAO.getNaziv(nazivPretraga);
 		
 		Map<String, Object> data = new LinkedHashMap<>();
 		data.put("filmovi", filmovi);
+		data.put("nazivPretrage", nazivPretrage);
 
 		request.setAttribute("data", data);
 		request.getRequestDispatcher("./SuccessServlet").forward(request, response);
