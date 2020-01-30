@@ -22,11 +22,18 @@ public class FilmoviServlet extends HttpServlet {
 		String zanrPretraga = request.getParameter("zanrPretraga");
 		String trajanje1 = request.getParameter("trajanje1");
 		String trajanje2 = request.getParameter("trajanje2");
+		String distributer = request.getParameter("distributerPretraga");
+		String zemljaPoreklaPretraga = request.getParameter("zemljaPoreklaPretraga");
+		String godina1 = request.getParameter("godina1");
+		String godina2 = request.getParameter("godina2");
 		
 		List<Film> filmovi = FilmDAO.getAll();
 		List<Film> nazivPretrage = FilmDAO.getNaziv(nazivPretraga);
 		List<Film> zanroviPretraga = FilmDAO.getZanrovi(zanrPretraga);
 		List<Film> trajanjeOpseg = FilmDAO.getOpsegTrajanja(trajanje1, trajanje2);
+		List<Film> distributeriPretraga = FilmDAO.getDistributeri(distributer);
+		List<Film> zemljePoreklaPretraga = FilmDAO.getZemljaPorekla(zemljaPoreklaPretraga);
+		List<Film> godinaOpseg = FilmDAO.getOpsegGodina(godina1, godina2);
 		
 		
 		Map<String, Object> data = new LinkedHashMap<>();
@@ -34,6 +41,9 @@ public class FilmoviServlet extends HttpServlet {
 		data.put("nazivPretrage", nazivPretrage);
 		data.put("zanroviPretraga", zanroviPretraga);
 		data.put("trajanjeOpseg", trajanjeOpseg);
+		data.put("distributeriPretraga", distributeriPretraga);
+		data.put("zemljaPoreklaPretraga", zemljePoreklaPretraga);
+		data.put("godinaOpseg", godinaOpseg);
 
 		request.setAttribute("data", data);
 		request.getRequestDispatcher("./SuccessServlet").forward(request, response);

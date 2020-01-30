@@ -211,5 +211,150 @@ public class FilmDAO {
 		
 		return filmovi;
 	}
+	
+	public static List<Film> getDistributeri(String distributeriPretraga) {
+		List<Film> filmovi = new ArrayList<>();
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT id, naziv, reziser, glumci, zanrovi, trajanje, distributer, zemljaPorekla, godinaProizvodnje, opis, aktivan FROM "
+					+ "filmovi WHERE distributer LIKE ? and aktivan = 1";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++, "%" + distributeriPretraga + "%");
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				index = 1;
+				int id = rset.getInt(index++);
+				String naziv = rset.getString(index++);
+				String reziser = rset.getString(index++);
+				String glumci = rset.getString(index++);
+				String zanrovi = rset.getString(index++);
+				String trajanje = rset.getString(index++);
+				String distributer = rset.getString(index++);
+				String zemljaPorekla = rset.getString(index++);
+				String godinaProizvodnje = rset.getString(index++);
+				String opis = rset.getString(index++);
+				boolean aktivan = rset.getBoolean(index++);
+
+				Film film = new Film(id, naziv, reziser, glumci, zanrovi, trajanje, distributer, zemljaPorekla, godinaProizvodnje, opis, aktivan);
+				
+				filmovi.add(film);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return filmovi;
+	}
+	
+	public static List<Film> getZemljaPorekla(String zemljaPoreklaPretraga) {
+		List<Film> filmovi = new ArrayList<>();
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT id, naziv, reziser, glumci, zanrovi, trajanje, distributer, zemljaPorekla, godinaProizvodnje, opis, aktivan FROM "
+					+ "filmovi WHERE zemljaPorekla LIKE ? and aktivan = 1";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++, "%" + zemljaPoreklaPretraga + "%");
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				index = 1;
+				int id = rset.getInt(index++);
+				String naziv = rset.getString(index++);
+				String reziser = rset.getString(index++);
+				String glumci = rset.getString(index++);
+				String zanrovi = rset.getString(index++);
+				String trajanje = rset.getString(index++);
+				String distributer = rset.getString(index++);
+				String zemljaPorekla = rset.getString(index++);
+				String godinaProizvodnje = rset.getString(index++);
+				String opis = rset.getString(index++);
+				boolean aktivan = rset.getBoolean(index++);
+
+				Film film = new Film(id, naziv, reziser, glumci, zanrovi, trajanje, distributer, zemljaPorekla, godinaProizvodnje, opis, aktivan);
+				
+				filmovi.add(film);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return filmovi;
+	}
+	
+	public static List<Film> getOpsegGodina(String godina1, String godina2) {
+		List<Film> filmovi = new ArrayList<>();
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT id, naziv, reziser, glumci, zanrovi, trajanje, distributer, zemljaPorekla, godinaProizvodnje, opis, aktivan FROM "
+					+ "filmovi WHERE CAST(godinaProizvodnje AS int) >= ? and CAST(godinaProizvodnje AS int) <= ? and aktivan = 1";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++,godina1);
+			pstmt.setString(index++,godina2);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				index = 1;
+				int id = rset.getInt(index++);
+				String naziv = rset.getString(index++);
+				String reziser = rset.getString(index++);
+				String glumci = rset.getString(index++);
+				String zanrovi = rset.getString(index++);
+				String trajanje = rset.getString(index++);
+				String distributer = rset.getString(index++);
+				String zemljaPorekla = rset.getString(index++);
+				String godinaProizvodnje = rset.getString(index++);
+				String opis = rset.getString(index++);
+				boolean aktivan = rset.getBoolean(index++);
+
+				Film film = new Film(id, naziv, reziser, glumci, zanrovi, trajanje, distributer, zemljaPorekla, godinaProizvodnje, opis, aktivan);
+				
+				filmovi.add(film);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return filmovi;
+	}
 
 }
