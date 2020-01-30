@@ -2,9 +2,9 @@ DROP TABLE IF EXISTS korisnici;
 DROP TABLE IF EXISTS tipovipr;
 DROP TABLE IF EXISTS sale;
 DROP TABLE IF EXISTS filmovi;
+DROP TABLE IF EXISTS projekcije;
 
 CREATE TABLE korisnici (
-	id INTEGER PRIMARY KEY,
 	korime VARCHAR(30) NOT NULL, 
 	lozinka VARCHAR(30) NOT NULL, 
              datumRegistracije VARCHAR(30) NOT NULL,
@@ -14,6 +14,9 @@ CREATE TABLE korisnici (
 
 INSERT INTO korisnici(korime, lozinka, datumRegistracije, uloga, aktivan) VALUES ('korisnik', 'korisnik', '01/16/2020', 'KORISNIK', 1);
 INSERT INTO korisnici(korime, lozinka, datumRegistracije, uloga, aktivan) VALUES ('admin', 'admin', '01/16/2020', 'ADMIN', 1);
+
+--SELECT datumRegistracije, uloga, aktivan FROM korisnici WHERE korime = ? AND lozinka = ? and aktivan = 1;
+--SELECT naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan FROM filmovi WHERE CAST(trajanje AS int) >= ? AND CAST(trajanje AS int) <= ?;
 
 CREATE TABLE tipovipr (
 	id INTEGER PRIMARY KEY,
@@ -61,12 +64,14 @@ CREATE TABLE projekcije (
             film int NOT NULL,
             tip int NOT NULL,
             sala int NOT NULL,
-            datumVreme VARCHAR(50) NOT NULL,
+            datumVreme datetime NOT NULL,
             cenaKarte int NOT NULL,
             admin VARCHAR(30) NOT NULL,
             aktivan BOOLEAN NOT NULL
 );
 
-INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(1, 1, 1, '02/12/2020 20:00', 300, 'zoki', 1);
-INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(2, 2, 2, '02/01/2020 19:00', 350, 'zoki', 1);
-INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(3, 3, 3, '03/10/2020 22:00', 400, 'zoki', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(1, 1, 1, '2020-02-15 20:00:00', 300, 'zoki', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(2, 2, 2, '2020-03-10 19:00:00', 350, 'zoki', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(3, 3, 3, '2020-01-12 22:00:00', 400, 'zoki', 1);
+
+--SELECT naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan FROM filmovi WHERE naziv LIKE ?;

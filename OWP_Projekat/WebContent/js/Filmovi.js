@@ -60,6 +60,8 @@
 					 godinaOdPretraga.hide();
 					 godinaDoPretraga.hide();
 					 godinaButton.hide();
+					 
+					 nazivPretraga.focus();
 				  
 			  }else if($(this).val() == '2'){
 
@@ -73,6 +75,8 @@
 					 godinaOdPretraga.hide();
 					 godinaDoPretraga.hide();
 					 godinaButton.hide();
+					 
+					 zanrPretraga.focus();
 
 			  }else if($(this).val() == '3'){
 
@@ -99,6 +103,8 @@
 					 godinaOdPretraga.hide();
 					 godinaDoPretraga.hide();
 					 godinaButton.hide();
+					 
+					 distributerPretraga.focus();
 					
 			  }else if($(this).val() == '5'){
 
@@ -113,6 +119,7 @@
 					 godinaDoPretraga.hide();
 					 godinaButton.hide();
 					
+					 zemljaPoreklaPretraga.focus();
 			  }
 			  else if($(this).val() == '6'){
 
@@ -126,6 +133,8 @@
 					 godinaOdPretraga.show();
 					 godinaDoPretraga.show();
 					 godinaButton.show();
+					 
+					 godinaOdPretraga.focus();
 
 			  }  else if($(this).val() == '7'){
 
@@ -145,7 +154,7 @@
 			  }
 			});
 		
-		$('#nazivPretragaInput').keyup(function(event) {
+			nazivPretraga.keyup(function(event) {
 		    
 			var nazivPretragaValue = nazivPretraga.val();
 			
@@ -180,7 +189,6 @@
 										
 					var filmovi = data.nazivPretrage;						
 					for (f in filmovi) {
-						console.log(filmovi[f].naziv);
 						filmoviTabela.append(
 							
 								'<tr>' + 
@@ -198,5 +206,104 @@
 			});
 		    
 		});
-	 
+			
+			zanrPretraga.keyup(function(event) {
+			    
+				var zanrPretragaValue = zanrPretraga.val();
+				
+				var params = {
+						'zanrPretraga': zanrPretragaValue, 
+				}
+							
+				$.get('FilmoviServlet',params, function(data){
+
+					if (data.status == 'success') {
+						
+						filmoviTabela.find('tr:gt(0)').remove();
+						
+						if (zanrPretragaValue == ''){
+							
+							var filmovi = data.filmovi;			
+							for (f in filmovi) {
+								filmoviTabela.append(
+									
+										'<tr>' + 
+											'<td>' + filmovi[f].naziv + '</td>' + 
+											'<td>' + filmovi[f].zanrovi + '</td>' + 
+											'<td>' + filmovi[f].trajanje + '</td>' + 
+											'<td>' + filmovi[f].distributer + '</td>' + 
+											'<td>' + filmovi[f].zemljaPorekla + '</td>' + 
+											'<td>' + filmovi[f].godinaProizvodnje + '</td>' + 
+										'</tr>' 
+								);
+							}
+							
+					}else{
+											
+						var filmovi = data.zanroviPretraga;						
+						for (f in filmovi) {
+							filmoviTabela.append(
+								
+									'<tr>' + 
+										'<td>' + filmovi[f].naziv + '</td>' + 
+										'<td>' + filmovi[f].zanrovi + '</td>' + 
+										'<td>' + filmovi[f].trajanje + '</td>' + 
+										'<td>' + filmovi[f].distributer + '</td>' + 
+										'<td>' + filmovi[f].zemljaPorekla + '</td>' + 
+										'<td>' + filmovi[f].godinaProizvodnje + '</td>' + 
+									'</tr>' 
+							);
+						}
+					}
+					}
+				});
+			    
+			});
+			
+			trajanjeButton.on('click', function(event) {
+			    
+				
+				var trajanjeOdValue = trajanjeOdPretraga.val();
+				var trajanjeDoValue = trajanjeDoPretraga.val();
+				
+				if(trajanjeOdValue=='' || trajanjeDoValue=='' || Number(trajanjeOdValue)>Number(trajanjeDoValue)){
+			    	alert("Oba polja moraju biti popunjena i vrednost 'Od' mora biti veca od vrednosti 'Do'");
+			    }else if(isNaN(trajanjeOdValue) | isNaN(trajanjeDoValue)){
+			    	alert("Oba polja moraju biti brojevi!");
+			    }else{
+			    	
+					var trajanjeOdValue = trajanjeOdPretraga.val();
+					var trajanjeDoValue = trajanjeDoPretraga.val();
+				
+				var params = {
+						'trajanje1': trajanjeOdValue, 
+						'trajanje2': trajanjeDoValue,
+				}
+							
+				$.get('FilmoviServlet',params, function(data){
+
+					if (data.status == 'success') {
+						
+						filmoviTabela.find('tr:gt(0)').remove();
+											
+						var filmovi = data.trajanjeOpseg;						
+						for (f in filmovi) {
+							console.log(filmovi[f].trajanje);
+							filmoviTabela.append(
+								
+									'<tr>' + 
+										'<td>' + filmovi[f].naziv + '</td>' + 
+										'<td>' + filmovi[f].zanrovi + '</td>' + 
+										'<td>' + filmovi[f].trajanje + '</td>' + 
+										'<td>' + filmovi[f].distributer + '</td>' + 
+										'<td>' + filmovi[f].zemljaPorekla + '</td>' + 
+										'<td>' + filmovi[f].godinaProizvodnje + '</td>' + 
+									'</tr>' 
+							);
+						}
+					}
+				});
+			    }
+			    
+			});
  });
