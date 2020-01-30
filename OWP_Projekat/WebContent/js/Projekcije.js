@@ -67,6 +67,8 @@
 					 cenaOd.hide();
 					 cenaDo.hide();
 					 cenaButton.hide();
+					 
+					 nazivFilmaPretraga.focus();
 				  
 			  }else if($(this).val() == '2'){
 
@@ -95,6 +97,8 @@
 					 cenaOd.hide();
 					 cenaDo.hide();
 					 cenaButton.hide();
+					 
+					 tipProjekcijePretraga.focus();
 				  
 			  }else if($(this).val() == '4'){
 		
@@ -109,6 +113,8 @@
 					 cenaOd.hide();
 					 cenaDo.hide();
 					 cenaButton.hide();
+					 
+					 salaPretraga.focus();
 					
 			  }else if($(this).val() == '5'){
 
@@ -123,6 +129,8 @@
 					 cenaOd.show();
 					 cenaDo.show();
 					 cenaButton.show();
+					 
+					 cenaOd.focus();
 					
 			  }else if($(this).val() == '6'){
 

@@ -90,6 +90,8 @@
 					 godinaOdPretraga.hide();
 					 godinaDoPretraga.hide();
 					 godinaButton.hide();
+					 
+					 trajanjeOdPretraga.focus();
 				  
 			  }else if($(this).val() == '4'){
 		
