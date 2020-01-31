@@ -245,4 +245,50 @@ public class ProjekcijaDAO {
 		return projekcije;
 	}
 	
+	public static List<Projekcija> getOpsegDatuma(String datum1, String datum2) {
+		List<Projekcija> projekcije = new ArrayList<>();
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT id, film, tip, sala, datumVreme, cenaKarte, admin, aktivan FROM "
+					+ "projekcije WHERE datumVreme >= ? and datumVreme <= ? and aktivan = 1";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++,datum1);
+			pstmt.setString(index++,datum2);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				index = 1;
+				int id = rset.getInt(index++);
+				int film = rset.getInt(index++);
+				int tip = rset.getInt(index++);
+				int sala = rset.getInt(index++);
+				String datumVreme = rset.getString(index++);
+				int cenaKarte = rset.getInt(index++);
+				String administrator = rset.getString(index++);
+				boolean aktivan = rset.getBoolean(index++);
+
+				Projekcija projekcija = new Projekcija(id, film, tip, sala, datumVreme, cenaKarte, administrator, aktivan);
+				
+				projekcije.add(projekcija);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return projekcije;
+	}
+	
 }

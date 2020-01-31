@@ -338,7 +338,7 @@
 			
 		});
 		
-		cenaButton.on('click', function(event) {	    
+		cenaButton.on('click', function(event) {
 			
 			var cenaOdValue = cenaOd.val();
 			var cenaDoValue = cenaDo.val();
@@ -364,6 +364,59 @@
 					projekcijeTabela.find('tr:gt(0)').remove();
 										
 					var projekcije = data.opsegCenaPretraga;
+					var tipovi = data.tipovi;
+					var sale = data.sale;
+					var filmovi = data.filmovi;
+					
+					for (p in projekcije) {
+						projekcijeTabela.append(
+								
+							
+								'<tr>' + 
+									'<td>' + filmovi.find(x => x.id === projekcije[p].film).naziv + '</td>' + 
+									'<td>' + projekcije[p].datumVreme + '</td>' + 
+									'<td>' + tipovi.find(x => x.id === projekcije[p].tip).naziv + '</td>' + 
+									'<td>' + sale.find(x => x.id === projekcije[p].sala).naziv + '</td>' + 
+									'<td>' + projekcije[p].cenaKarte + '</td>' +  
+								'</tr>' 
+						);
+					}
+				}
+			});
+		    }
+		    
+		});
+		
+		vremePrikazivanjaButton.on('click', function(event) {
+			
+			var datumOdValue = datumOd.val();
+			var vremeOdValue = vremeOd.val();
+			
+			var datumDoValue = datumDo.val();
+			var vremeDoValue = vremeDo.val();
+			
+			if(datumOdValue=='' || vremeOdValue=='' || datumDoValue=='' || vremeDoValue=='' || (datumOdValue+" "+vremeOdValue)>(datumDoValue+" "+vremeDoValue)){
+		    	alert("Oba polja moraju biti popunjena i datum 'Od' mora biti manji od datuma 'Do'");
+			}else{
+		    	
+				var datumOdValue = datumOd.val();
+				var vremeOdValue = vremeOd.val();
+				
+				var datumDoValue = datumDo.val();
+				var vremeDoValue = vremeDo.val();
+			
+			var params = {
+					'datum1': datumOdValue + " " + vremeOdValue + ":" + "00", 
+					'datum2': datumDoValue + " " + vremeDoValue + ":" + "00",
+			}
+						
+			$.get('ProjekcijeServlet',params, function(data){
+
+				if (data.status == 'success') {
+					
+					projekcijeTabela.find('tr:gt(0)').remove();
+										
+					var projekcije = data.opsegDatumaPretraga;
 					var tipovi = data.tipovi;
 					var sale = data.sale;
 					var filmovi = data.filmovi;
