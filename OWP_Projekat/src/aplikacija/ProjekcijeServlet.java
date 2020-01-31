@@ -24,16 +24,32 @@ public class ProjekcijeServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		String nazivFilmaPretraga = request.getParameter("nazivFilmaPretraga");
+		String tipProjekcijePretraga = request.getParameter("tipProjekcijePretraga");
+		String salaPretraga = request.getParameter("salaPretraga");
+		String cena1 = request.getParameter("cena1");
+		String cena2 = request.getParameter("cena2");
+		
 		List<Film> filmovi = FilmDAO.getAll();
 		List<Sala> sale = SalaDAO.getAll();
 		List<TipProjekcije> tipoviProjekcije = TipProjekcijeDAO.getAll();
 		List<Projekcija> projekcije = ProjekcijaDAO.getAll();
+		
+		List<Projekcija> nazivFilmovaPretraga = ProjekcijaDAO.getNazivFilma(nazivFilmaPretraga);
+		List<Projekcija> tipoviProjekcijePretraga = ProjekcijaDAO.getTipProjekcije(tipProjekcijePretraga);
+		List<Projekcija> salePretraga = ProjekcijaDAO.getSala(salaPretraga);
+		List<Projekcija> opsegCenaPretraga = ProjekcijaDAO.getOpsegCena(cena1, cena2);
 		
 		Map<String, Object> data = new LinkedHashMap<>();
 		data.put("tipovi", tipoviProjekcije);
 		data.put("sale", sale);
 		data.put("filmovi", filmovi);
 		data.put("projekcije", projekcije);
+		
+		data.put("nazivFilmovaPretraga", nazivFilmovaPretraga);
+		data.put("tipoviProjekcijePretraga", tipoviProjekcijePretraga);
+		data.put("salePretraga", salePretraga);
+		data.put("opsegCenaPretraga", opsegCenaPretraga);
 
 		request.setAttribute("data", data);
 		request.getRequestDispatcher("./SuccessServlet").forward(request, response);

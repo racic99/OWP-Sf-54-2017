@@ -37,8 +37,18 @@
 		<input name="nazivFilmaPretraga" type="text" id="nazivFilmaPretragaInput" placeholder="Uneti naziv filma"/>
 		<input type="date" id="datumOdInput"/> <input type="time" id="vremeOdInput"/> <input type="date" id="datumDoInput"/> <input type="time" id="vremeDoInput"/>
 		<input type="submit" value="Pretrazi" id="pretragaVremePrikazivanja"/>
-		<input name="tipProjekcijePretraga" type="text" id="tipProjekcijePretragaInput" placeholder="Uneti tip projekcije"/>
-		<input name="salaPretraga" type="text" id="salaPretragaInput" placeholder="Uneti salu"/>
+		<select id="tipProjekcijePretragaInput" name="tipProjekcijePretraga">
+			<option value="4" selected="selected">Izaberi tip projekcije</option>
+			<option value="1">2D</option>
+			<option value="2">3D</option>
+			<option value="3">4D</option>
+		</select>
+			<select id="salaPretragaInput" name="salaPretraga">
+			<option value="4" selected="selected">Izaberi salu</option>
+			<option value="1">Velika sala</option>
+			<option value="2">Srednja sala</option>
+			<option value="3">Mala sala</option>
+		</select>
 		<input placeholder="Cena od" type="text" id="cenaOdInput"/>   <input placeholder="Cena do" type="text" id="cenaDoInput"/>
 		<input type="submit" value="Pretrazi" id="pretragaCena"/>
 		
