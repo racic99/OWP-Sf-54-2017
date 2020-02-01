@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import baza.KorisnikDAO;
 import model.Korisnik;
 
-public class KorisnikProjekcijeServlet extends HttpServlet {
+public class UlogaPrijavljenogKorisnikaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		String prijavljenKorisnikKorime = (String) request.getSession().getAttribute("prijavljenKorisnik");
 		if (prijavljenKorisnikKorime == null) {
 			request.getRequestDispatcher("./LogoutServlet").forward(request, response);
@@ -27,16 +27,19 @@ public class KorisnikProjekcijeServlet extends HttpServlet {
 			request.getRequestDispatcher("./LogoutServlet").forward(request, response);
 			return;
 		}
-		
-		
 
 		Map<String, Object> data = new LinkedHashMap<>();
-		data.put("prijavljenKorisnikKorime", prijavljenKorisnikKorime);
-		data.put("prijavljenKorisnik", prijavljenKorisnik);
-		
+
+		String uloga = request.getParameter("uloga");
+		switch (uloga) {
+			case "ulogaPrijavljenogKorisnika": {
+				data.put("ulogaPrijavljenogKorisnika", prijavljenKorisnik.getUloga());
+				break;
+			}
+		}
+
 		request.setAttribute("data", data);
 		request.getRequestDispatcher("./SuccessServlet").forward(request, response);
-	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -89,4 +89,14 @@
     <servlet-name>KorisnikProjekcijeServlet</servlet-name>
     <url-pattern>/KorisnikProjekcijeServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UlogaPrijavljenogKorisnikaServlet</display-name>
+    <servlet-name>UlogaPrijavljenogKorisnikaServlet</servlet-name>
+    <servlet-class>aplikacija.UlogaPrijavljenogKorisnikaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UlogaPrijavljenogKorisnikaServlet</servlet-name>
+    <url-pattern>/UlogaPrijavljenogKorisnikaServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

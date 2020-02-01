@@ -105,16 +105,17 @@ public class KorisnikDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		try {
-			String query = "SELECT korime, lozinka, datumRegistracije, uloga, aktivan FROM korisnci WHERE korime = ?";
+			String query = "SELECT korime, lozinka, datumRegistracije, uloga, aktivan FROM korisnici WHERE korime = ?";
 
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, korime);
+			int index = 1;
+			pstmt.setString(index++, korime);
 			System.out.println(pstmt);
 
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {
-				int index = 1;
+				index = 2;
 				String lozinka = rset.getString(index++);
 				String datumRegistracije = rset.getString(index++);
 				TipKorisnika uloga = TipKorisnika.valueOf(rset.getString(index++));

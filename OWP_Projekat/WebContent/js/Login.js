@@ -26,7 +26,8 @@ $(document).ready(function() {
 				return;
 			}
 			if (data.status == 'success') {
-				window.location.replace('Projekcije.html');
+				console.log('Djelji');
+				window.location.replace('KorisnikProjekcije.html');
 			}
 		});
 		
