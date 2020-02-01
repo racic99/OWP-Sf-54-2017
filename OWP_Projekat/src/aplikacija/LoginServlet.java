@@ -28,6 +28,8 @@ public class LoginServlet extends HttpServlet {
 				return;
 			}
 			
+			request.getSession().setAttribute("prijavljenKorisnik", korisnik.getKorime());
+
 			request.getRequestDispatcher("./SuccessServlet").forward(request, response);
 			return;
 			} catch (Exception ex) {

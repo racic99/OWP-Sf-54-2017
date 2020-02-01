@@ -96,4 +96,41 @@ public class KorisnikDAO {
 		return null;
 	}
 	
+	public static Korisnik get(String korime) {
+
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT korime, lozinka, datumRegistracije, uloga, aktivan FROM korisnci WHERE korime = ?";
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, korime);
+			System.out.println(pstmt);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				int index = 1;
+				String lozinka = rset.getString(index++);
+				String datumRegistracije = rset.getString(index++);
+				TipKorisnika uloga = TipKorisnika.valueOf(rset.getString(index++));
+				boolean aktivan = rset.getBoolean(index++);
+
+				return new Korisnik(korime, lozinka, datumRegistracije, uloga, aktivan);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+
+		return null;
+	}
+	
 }

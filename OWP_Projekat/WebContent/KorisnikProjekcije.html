@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<script src="js/jquery-3.3.1.js"></script>
+	<script src="js/Projekcije.js"></script>
+<title>Projekcije</title>
+</head>
+<style>
+	h2 {text-align: center; color: white; margin-bottom: 8px; margin-top: 8px;}
+	body {background-image : url("slike/bioskop.jpg"); background-repeat: no-repeat;
+		  background-size: cover; height: 100vh;}
+	table {background-color : dodgerblue; text-align: center; display: inline-block;}
+	td {background-color : lightblue;}
+	div {display: block; text-align: center;}
+	select {text-align:center; background-color: lightblue;}
+	h4 {margin-bottom: 8px; color: white; margin-top: 8px; text-shadow:
+    -1px -1px 0 red,
+    1px -1px 0 red,
+    -1px 1px 0 red,
+    1px 1px 0 red; }
+	th {cursor: pointer; border-style: solid;}
+	th:hover {color: silver;}
+</style>
+<body>
+<p style="text-align: center; margin-top: 0px; margin-bottom: 0px;" id="profilLink"><a 
+style="text-decoration: none; font-weight: bold; color: dodgerblue;" id="odjavaLink" href="#">Odjava</a></p>
+
+<p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><a  
+style="text-decoration: none; font-weight: bold; color: dodgerblue;" 
+href="Filmovi.html">Pregled svih filmova</a></p>
+<h2>Projekcije</h2>
+<div>
+		<h4>Izaberi nacin pretrage</h4>
+		<select id="nacinPretragePr" name="comboBoxPretragaPr">
+			<option value="6" selected="selected">Nacin pretrage</option>
+			<option value="1">Naziv filma</option>
+			<option value="2">Opseg vremena prikazivanja</option>
+			<option value="3">Tip projekcije</option>
+			<option value="4">Sala</option>
+			<option value="5">Opseg cene</option>	
+			
+		</select>
+		<br/>
+		<br/>
+		
+		<input name="nazivFilmaPretraga" type="text" id="nazivFilmaPretragaInput" placeholder="Uneti naziv filma"/>
+		<input type="date" id="datumOdInput"/> <input type="time" id="vremeOdInput"/> <input type="date" id="datumDoInput"/> <input type="time" id="vremeDoInput"/>
+		<input type="submit" value="Pretrazi" id="pretragaVremePrikazivanja"/>
+		<select id="tipProjekcijePretragaInput" name="tipProjekcijePretraga">
+			<option value="4" selected="selected">Izaberi tip projekcije</option>
+			<option value="1">2D</option>
+			<option value="2">3D</option>
+			<option value="3">4D</option>
+		</select>
+			<select id="salaPretragaInput" name="salaPretraga">
+			<option value="4" selected="selected">Izaberi salu</option>
+			<option value="1">Velika sala</option>
+			<option value="2">Srednja sala</option>
+			<option value="3">Mala sala</option>
+		</select>
+		<input placeholder="Cena od" type="text" id="cenaOdInput"/>   <input placeholder="Cena do" type="text" id="cenaDoInput"/>
+		<input type="submit" value="Pretrazi" id="pretragaCena"/>
+		
+		<br/>
+		<br/>
+		
+		<table border="1" id="projekcijeTabela">
+			<tr>
+				<th onclick="sortTable(0)">Film</th>
+				<th onclick="sortTable(1)">Vreme prikazivanja</th>
+				<th onclick="sortTable(2)">Tip projekcije</th>
+				<th onclick="sortTable(3)">Sala</th>
+				<th onclick="sortTable(4)">Cena</th>
+			</tr>
+			</table>
+			<p id="adminInterfejs"></p>
+</div>
+
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("projekcijeTabela");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc"; 
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      broj1 = parseInt(x.innerHTML);
+      broj2 = parseInt(y.innerHTML);
+      datum1 = Date.parse(x.innerHTML);
+      datum2 = Date.parse(y.innerHTML);
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc" && !isNaN(datum1) && !isNaN(datum2)) {
+          if (datum1 > datum2) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch= true;
+              break;
+            }
+	}else if (dir == "desc" && !isNaN(datum1) && !isNaN(datum2)) {
+        if (datum1 < datum2) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch= true;
+            break;
+          }
+	}else if (dir == "asc" && !isNaN(broj1) && !isNaN(broj2)) {
+          if (broj1 > broj2) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch= true;
+              break;
+            }
+	}else if (dir == "desc" && !isNaN(broj1) && !isNaN(broj2)) {
+        if (broj1 < broj2) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch= true;
+            break;
+          }
+	} else if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      } 
+      
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;      
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
+</script>
+
+</body>
+</html>
