@@ -99,4 +99,14 @@
     <servlet-name>UlogaPrijavljenogKorisnikaServlet</servlet-name>
     <url-pattern>/UlogaPrijavljenogKorisnikaServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>KorisnikFilmoviServlet</display-name>
+    <servlet-name>KorisnikFilmoviServlet</servlet-name>
+    <servlet-class>aplikacija.KorisnikFilmoviServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KorisnikFilmoviServlet</servlet-name>
+    <url-pattern>/KorisnikFilmoviServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
