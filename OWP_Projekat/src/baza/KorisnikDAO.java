@@ -110,7 +110,6 @@ public class KorisnikDAO {
 			pstmt = conn.prepareStatement(query);
 			int index = 1;
 			pstmt.setString(index++, korime);
-			System.out.println(pstmt);
 
 			rset = pstmt.executeQuery();
 

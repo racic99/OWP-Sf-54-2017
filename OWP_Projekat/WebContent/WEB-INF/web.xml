@@ -119,4 +119,14 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/RegisterServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NalogServlet</display-name>
+    <servlet-name>NalogServlet</servlet-name>
+    <servlet-class>aplikacija.NalogServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NalogServlet</servlet-name>
+    <url-pattern>/NalogServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
