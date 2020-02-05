@@ -134,4 +134,36 @@ public class KorisnikDAO {
 		return null;
 	}
 	
+	public static boolean add(Korisnik korisnik) {
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		try {
+			String query = "INSERT INTO korisnici (korime, lozinka, datumRegistracije, uloga, aktivan) "
+					+ "VALUES (?, ?, ?, ?, ?)";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+
+			pstmt.setString(index++, korisnik.getKorime());
+			pstmt.setString(index++, korisnik.getLozinka());
+			pstmt.setString(index++, korisnik.getDatumRegistracije());
+			pstmt.setString(index++, korisnik.getUloga().toString());
+			pstmt.setBoolean(index++, korisnik.isAktivan());
+
+			return pstmt.executeUpdate() == 1;
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+
+		return false;
+	}
+	
 }

@@ -12,8 +12,8 @@ CREATE TABLE korisnici (
              aktivan BOOLEAN NOT NULL
 );
 
-INSERT INTO korisnici(korime, lozinka, datumRegistracije, uloga, aktivan) VALUES ('korisnik', 'korisnik', '01/16/2020', 'KORISNIK', 1);
-INSERT INTO korisnici(korime, lozinka, datumRegistracije, uloga, aktivan) VALUES ('admin', 'admin', '01/16/2020', 'ADMIN', 1);
+INSERT INTO korisnici(korime, lozinka, datumRegistracije, uloga, aktivan) VALUES ('korisnik', 'korisnik', '2020-01-16 14:00:00', 'KORISNIK', 1);
+INSERT INTO korisnici(korime, lozinka, datumRegistracije, uloga, aktivan) VALUES ('admin', 'admin', '2020-01-16 14:00:00', 'ADMIN', 1);
 
 --SELECT datumRegistracije, uloga, aktivan FROM korisnici WHERE korime = ? AND lozinka = ? and aktivan = 1;
 --SELECT naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan FROM filmovi WHERE CAST(trajanje AS int) >= ? AND CAST(trajanje AS int) <= ?;
