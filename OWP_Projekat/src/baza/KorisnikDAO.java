@@ -165,4 +165,30 @@ public class KorisnikDAO {
 		return false;
 	}
 	
+	public static boolean izmenaKorisnika(Korisnik korisnik) {
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		try {
+			String query = "UPDATE korisnici SET lozinka = ?, uloga = ? WHERE korime = ?";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++, korisnik.getLozinka());
+			pstmt.setString(index++, korisnik.getUloga().toString());
+			pstmt.setString(index++, korisnik.getKorime());
+
+			return pstmt.executeUpdate() == 1;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+
+		return false;
+	}
+	
 }

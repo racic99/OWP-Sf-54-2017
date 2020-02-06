@@ -2,6 +2,7 @@ package aplikacija;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import baza.KorisnikDAO;
 import model.Korisnik;
+import model.TipKorisnika;
 
 public class NalogServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -44,7 +46,76 @@ public class NalogServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		String prijavljenKorisnikKorime = (String) request.getSession().getAttribute("prijavljenKorisnik");
+		if (prijavljenKorisnikKorime == null) {
+			request.getRequestDispatcher("./LogoutServlet").forward(request, response);
+			return;
+		}
+		Korisnik prijavljenKorisnik = KorisnikDAO.get(prijavljenKorisnikKorime);
+		if (prijavljenKorisnik == null) {
+			request.getRequestDispatcher("./LogoutServlet").forward(request, response);
+			return;
+		}
+		if (prijavljenKorisnik.getUloga() == null) {
+			request.getRequestDispatcher("./UnauthorizedServlet").forward(request, response);
+			return;
+		}
+		
+		List<Korisnik> korisnici = KorisnikDAO.getAll();
+		
+		Map<String, Object> data = new LinkedHashMap<>();
+		data.put("korisnici", korisnici);	
+		
+		try {
+			String action = request.getParameter("action");
+			switch (action) {
+				case "izmenaKorisnika": {		
+					String lozinkaKorisnik = request.getParameter("lozinkaKorisnik");
+					
+					String korimeKorisnik = request.getParameter("korimeKorisnik");
+					
+					String uloga = request.getParameter("uloga");	
+					
+					Korisnik korisnik = KorisnikDAO.get(korimeKorisnik);
+
+					korisnik.setLozinka(lozinkaKorisnik);
+					korisnik.setUloga(TipKorisnika.valueOf(uloga));
+					
+					if(korimeKorisnik == null) {
+						request.getRequestDispatcher("./FailServlet").forward(request, response);
+						return;
+					}
+					KorisnikDAO.izmenaKorisnika(korisnik);
+					break;
+				}
+				case "izmenaKorisnikaAdmin": {
+					String lozinka = request.getParameter("lozinka");
+					String uloga = request.getParameter("uloga");	
+					
+					String korimeKorisnik = request.getParameter("korimeKorisnik");
+					Korisnik korisnik = KorisnikDAO.get(korimeKorisnik);
+					
+					korisnik.setLozinka(lozinka);
+					korisnik.setUloga(TipKorisnika.valueOf(uloga));
+					
+					if(korimeKorisnik == null) {
+						request.getRequestDispatcher("./FailServlet").forward(request, response);
+						return;
+					}
+					KorisnikDAO.izmenaKorisnika(korisnik);
+					break;
+				}
+				case "delete":{
+					break;
+				}
+			}
+			
+			request.getRequestDispatcher("./SuccessServlet").forward(request, response);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			request.getRequestDispatcher("./FailServlet").forward(request, response);
+		}
+
 	}
 
 }
