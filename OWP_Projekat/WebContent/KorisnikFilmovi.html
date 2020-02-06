@@ -115,7 +115,7 @@ function sortTable(n) {
             break;
           }
 	}else if (dir == "desc" && x.innerHTML.startsWith('<a') && y.innerHTML.startsWith('<a')) {
-      if (nazivlink1.innerHTML.toLowerCase() > nazivlink2.innerHTML.toLowerCase()) {
+      if (nazivlink1.innerHTML.toLowerCase() < nazivlink2.innerHTML.toLowerCase()) {
           //if so, mark as a switch and break the loop:
           shouldSwitch= true;
           break;

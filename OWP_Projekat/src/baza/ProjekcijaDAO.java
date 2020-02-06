@@ -20,7 +20,7 @@ public class ProjekcijaDAO {
 		ResultSet rset = null;
 		try {
 			String query = "SELECT id, film, tip, sala, datumVreme, cenaKarte, admin, aktivan "
-					+ "FROM projekcije WHERE aktivan = 1";
+					+ "FROM projekcije WHERE aktivan = 1 AND (strftime('%d',datumVreme) - strftime('%d','now'))=0";
 
 			pstmt = conn.prepareStatement(query);
 
@@ -75,7 +75,7 @@ public class ProjekcijaDAO {
 		ResultSet rset = null;
 		try {
 			String query = "SELECT p.id, p.film, p.tip, p.sala, p.datumVreme, p.cenaKarte, p.admin, p.aktivan FROM "
-					+ "projekcije p, filmovi f WHERE p.film = f.id AND f.naziv LIKE ?";	 
+					+ "projekcije p, filmovi f WHERE p.film = f.id AND f.naziv LIKE ? AND (strftime('%d',datumVreme) - strftime('%d','now'))=0";	 
 
 			pstmt = conn.prepareStatement(query);
 			int index = 1;
@@ -120,7 +120,7 @@ public class ProjekcijaDAO {
 		ResultSet rset = null;
 		try {
 			String query = "SELECT p.id, p.film, p.tip, p.sala, p.datumVreme, p.cenaKarte, p.admin, p.aktivan FROM "
-					+ "projekcije p, tipovipr t WHERE p.film = t.id AND t.naziv LIKE ?";	 
+					+ "projekcije p, tipovipr t WHERE p.tip = t.id AND t.naziv LIKE ? AND (strftime('%d',p.datumVreme) - strftime('%d','now'))=0";	 
 
 			pstmt = conn.prepareStatement(query);
 			int index = 1;
@@ -165,7 +165,7 @@ public class ProjekcijaDAO {
 		ResultSet rset = null;
 		try {
 			String query = "SELECT p.id, p.film, p.tip, p.sala, p.datumVreme, p.cenaKarte, p.admin, p.aktivan FROM "
-					+ "projekcije p, sale s WHERE p.film = s.id AND s.naziv LIKE ?";	 
+					+ "projekcije p, sale s WHERE p.sala = s.id AND s.naziv LIKE ? AND (strftime('%d',p.datumVreme) - strftime('%d','now'))=0";	 
 
 			pstmt = conn.prepareStatement(query);
 			int index = 1;
@@ -256,7 +256,7 @@ public class ProjekcijaDAO {
 		ResultSet rset = null;
 		try {
 			String query = "SELECT id, film, tip, sala, datumVreme, cenaKarte, admin, aktivan FROM "
-					+ "projekcije WHERE datumVreme >= ? and datumVreme <= ? and aktivan = 1";
+					+ "projekcije WHERE datumVreme >= ? AND datumVreme <= ? AND aktivan = 1";
 
 			pstmt = conn.prepareStatement(query);
 			int index = 1;
