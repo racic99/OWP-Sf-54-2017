@@ -13,6 +13,7 @@ CREATE TABLE korisnici (
 );
 
 INSERT INTO korisnici(korime, lozinka, datumRegistracije, uloga, aktivan) VALUES ('korisnik', 'korisnik', '2020-01-16 14:00:00', 'KORISNIK', 1);
+INSERT INTO korisnici(korime, lozinka, datumRegistracije, uloga, aktivan) VALUES ('korisnik2', 'korisnik2', '2020-01-16 14:00:00', 'KORISNIK', 1);
 INSERT INTO korisnici(korime, lozinka, datumRegistracije, uloga, aktivan) VALUES ('admin', 'admin', '2020-01-16 14:00:00', 'ADMIN', 1);
 
 --SELECT datumRegistracije, uloga, aktivan FROM korisnici WHERE korime = ? AND lozinka = ? and aktivan = 1;
@@ -41,9 +42,9 @@ INSERT INTO sale(naziv,brojSedista,tipoviProjekcija) VALUES ('Mala sala', 5, '1'
 CREATE TABLE filmovi (
             id INTEGER PRIMARY KEY,
             naziv VARCHAR(50) NOT NULL,
-            reziser VARCHAR(30) NOT NULL,
-            glumci VARCHAR(60) NOT NULL,
-            zanrovi VARCHAR(50) NOT NULL,
+            reziser VARCHAR(30),
+            glumci VARCHAR(60),
+            zanrovi VARCHAR(50),
             trajanje VARCHAR(3) NOT NULL,
             distributer VARCHAR(30) NOT NULL,
             zemljaPorekla VARCHAR(30) NOT NULL,
@@ -52,12 +53,20 @@ CREATE TABLE filmovi (
             aktivan BOOLEAN NOT NULL
 );
 
-INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Mrtav ladan', 'Stevo', 'Milan, Marko', 'Zanr1, Zanr2', '90', 'Djoka', 'Srbija', '2000', 'Neki opis', 1);
-INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Kum', 'Marica', 'Filip, Stefan', 'Zanr3, Zanr4', '120', 'Italija prodaksn', 'Italija', '2011', 'Opis neki', 1);
-INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Celavi bez ruku za kosu se vuku', 'Ivica', 'Nemanja, Gojko', 'Zanr2, Zanr3', '110', 'Ker', 'Srbija', '1980', 'Opisan film', 1);
+INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Mrtav ladan', 'Stevo', 'Milan, Marko', 'Zanr1,Zanr2', '90', 'Djoka', 'Srbija', '2000', 'Neki opis', 1);
+INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Kum', 'Marica', 'Filip, Stefan', 'Zanr3,Zanr4', '120', 'Italija prodaksn', 'Italija', '2011', 'Opis neki', 1);
+INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Celavi bez ruku za kosu se vuku', 'Ivica', 'Nemanja, Gojko', 'Zanr2,Zanr3', '110', 'Ker', 'Srbija', '1980', 'Opisan film', 1);
 INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Gubljenje max', 'Stefan', 'Milos, Mladjo', 'Zanr1', '150', 'Gubljenje prodaksn', 'Rusija', '2014', 'Pa gubljenje', 1);
-INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Random film', 'Nikola', 'Mitar, Radoslav', 'Zanr4, Zanr3', '124', 'Random dist', 'Spanija', '1991', 'Random opis', 1);
+INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Random film', 'Nikola', 'Mitar, Radoslav', 'Zanr4,Zanr3', '124', 'Random dist', 'Spanija', '1991', 'Random opis', 1);
 INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Web programiranje', 'Marko', 'Pedja, Marko', 'Zanr5', '180', 'FTN', 'Brazil', '2019', 'Projekat', 1);
+INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Kineski film', 'Wu Ji', 'Brus Li, Zoki', 'Zanr5,Zanr1', '134', 'Kinezi', 'Kina', '2010', 'Film iz Kine', 1);
+INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Ljudi u crnom', 'John', 'Mark, Michael', 'Zanr2,Zanr4', '110', 'Amerikanci', 'USA', '2005', 'U crnom ljudi', 1);
+INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Boj na Kosovu', 'Jovan', 'Lazar, Milos', 'Zanr6', '200', 'Srbi', 'Srbija', '2004', 'Pobeda', 1);
+INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Dokumentarni film', 'Carlos', '', 'Zanr7', '60', 'Dokumentani distributer', 'Argentina', '2020', 'Film o sumi', 1);
+
+
+
+
 
 CREATE TABLE projekcije (
             id INTEGER PRIMARY KEY,
@@ -70,8 +79,61 @@ CREATE TABLE projekcije (
             aktivan BOOLEAN NOT NULL
 );
 
-INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(1, 1, 1, '2020-02-15 20:00:00', 300, 'zoki', 1);
-INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(2, 2, 2, '2020-03-10 19:00:00', 350, 'zoki', 1);
-INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(3, 3, 3, '2020-01-12 22:00:00', 400, 'zoki', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(1, 2, 1, '2020-02-04 08:00:00', 200, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(10, 3, 2, '2020-02-04 10:00:00', 300, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(2, 1, 3, '2020-02-04 12:00:00', 400, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(9, 2, 1, '2020-02-04 13:30:00', 350, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(3, 3, 2, '2020-02-04 15:00:00', 250, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(1, 2, 1, '2020-02-04 17:00:00', 200, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(10, 3, 2, '2020-02-04 18:00:00', 300, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(2, 1, 3, '2020-02-04 19:00:00', 400, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(9, 2, 1, '2020-02-04 21:30:00', 350, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(3, 3, 2, '2020-02-04 23:00:00', 250, 'admin', 1);
+
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(1, 1, 1, '2020-02-05 08:00:00', 300, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(2, 1, 2, '2020-02-05 10:00:00', 350, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(3, 1, 3, '2020-02-05 12:00:00', 200, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(4, 2, 1, '2020-02-05 13:30:00', 150, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(5, 3, 2, '2020-02-05 15:00:00', 450, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(1, 1, 1, '2020-02-05 17:00:00', 300, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(2, 1, 2, '2020-02-05 18:00:00', 350, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(3, 1, 3, '2020-02-05 19:00:00', 200, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(4, 2, 1, '2020-02-05 21:30:00', 150, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(5, 3, 2, '2020-02-05 23:00:00', 450, 'admin', 1);
+
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(6, 3, 2, '2020-02-06 08:00:00', 230, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(7, 1, 2, '2020-02-06 10:00:00', 340, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(8, 1, 3, '2020-02-06 12:00:00', 510, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(9, 2, 1, '2020-02-06 13:30:00', 440, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(10, 3, 2, '2020-02-06 15:00:00', 190, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(6, 3, 2, '2020-02-06 17:00:00', 230, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(7, 1, 2, '2020-02-06 18:00:00', 340, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(8, 1, 3, '2020-02-06 19:00:00', 510, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(9, 2, 1, '2020-02-06 21:30:00', 440, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(10, 3, 2, '2020-02-06 23:00:00', 190, 'admin', 1);
+
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(1, 2, 1, '2020-02-07 08:00:00', 100, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(3, 1, 2, '2020-02-07 10:00:00', 200, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(5, 1, 3, '2020-02-07 12:00:00', 300, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(7, 2, 1, '2020-02-07 13:30:00', 400, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(9, 3, 2, '2020-02-07 15:00:00', 500, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(1, 2, 1, '2020-02-07 17:00:00', 100, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(3, 1, 2, '2020-02-07 18:00:00', 200, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(5, 1, 3, '2020-02-07 19:00:00', 300, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(7, 2, 1, '2020-02-07 21:30:00', 400, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(9, 3, 2, '2020-02-07 23:00:00', 500, 'admin', 1);
+
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(2, 2, 1, '2020-02-08 08:00:00', 150, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(4, 1, 2, '2020-02-08 10:00:00', 250, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(6, 1, 3, '2020-02-08 12:00:00', 350, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(8, 2, 1, '2020-02-08 13:30:00', 450, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(10, 2, 1, '2020-02-08 15:00:00', 550, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(2, 2, 1, '2020-02-08 17:00:00', 150, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(4, 1, 2, '2020-02-08 18:00:00', 250, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(6, 1, 3, '2020-02-08 19:00:00', 350, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(8, 2, 1, '2020-02-08 21:30:00', 450, 'admin', 1);
+INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(10, 2, 1, '2020-02-08 23:00:00', 550, 'admin', 1);
 
 --SELECT naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan FROM filmovi WHERE naziv LIKE ?;
+
+--SELECT id, film, tip, sala, datumVreme, cenaKarte, admin, aktivan FROM projekcije WHERE (strftime('%d',datumVreme) - strftime('%d','now'))=0;
