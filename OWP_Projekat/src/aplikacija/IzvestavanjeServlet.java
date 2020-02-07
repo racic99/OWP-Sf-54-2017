@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import baza.FilmDAO;
 import baza.IzvestavanjeDAO;
 import baza.KorisnikDAO;
+import model.Film;
 import model.Izvestavanje;
 import model.Korisnik;
 
@@ -38,11 +40,13 @@ public class IzvestavanjeServlet extends HttpServlet {
 		String datum2 = request.getParameter("datum2");
 		
 		List<Izvestavanje> izvestavanje = IzvestavanjeDAO.getAll(datum1, datum2);
+		List<Film> filmovi = FilmDAO.getAll();
 
 		
 		Map<String, Object> data = new LinkedHashMap<>();
 		data.put("izvestavanje", izvestavanje);
 		data.put("prijavljenKorisnikKorime", prijavljenKorisnikKorime);
+		data.put("filmovi", filmovi);
 		
 		request.setAttribute("data", data);
 		request.getRequestDispatcher("./SuccessServlet").forward(request, response);	}

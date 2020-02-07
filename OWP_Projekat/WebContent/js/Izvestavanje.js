@@ -71,6 +71,7 @@ pretragaOpsegVremenaButton.on('click', function(event) {
 			var ukupnoProjekcija = 0;
 			var ukupnoProdatihKarata = 0;
 			var ukupnaCenaSvihProdatihKarata = 0;
+			var filmovi = data.filmovi;
 			
 			for (i in izvestavanje) {
 				ukupnoProjekcija += izvestavanje[i].brojProjekcija;
@@ -78,7 +79,7 @@ pretragaOpsegVremenaButton.on('click', function(event) {
 				ukupnaCenaSvihProdatihKarata += izvestavanje[i].ukupnaCena;
 				izvestavanjeTabela.append(
 						'<tr>' + 
-						'<td>' + izvestavanje[i].nazivFilma + '</a></td>' + 
+						'<td><a href="Film.html?id=' + filmovi.find(x => x.naziv === izvestavanje[i].nazivFilma).id + '">' + izvestavanje[i].nazivFilma + '</a></td>' + 
 							'<td>' + izvestavanje[i].brojProjekcija + '</td>' + 
 							'<td>' + izvestavanje[i].brojProdatihKarata + '</td>' + 
 							'<td>' + izvestavanje[i].ukupnaCena + '</td>' + 
