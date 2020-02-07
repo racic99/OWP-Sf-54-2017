@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<script src="js/jquery-3.3.1.js"></script>
+	<script src="js/UpravljanjeKorisnicima.js"></script>
+<title>Upravljanje korisnicima</title>
+</head>
+<style>
+	h2 {text-align: center; color: white; margin-bottom: 8px; margin-top: 8px;}
+	body {background-image : url("slike/bioskop.jpg"); background-repeat: no-repeat;
+		  background-size: cover; height: 100vh;}
+	table {background-color : dodgerblue; text-align: center; display: inline-block;}
+	td {background-color : lightblue;}
+	div {display: block; text-align: center;}
+	select {text-align:center; background-color: lightblue;}
+	h4 {margin-bottom: 8px; color: white; margin-top: 8px; text-shadow:
+    -1px -1px 0 red,
+    1px -1px 0 red,
+    -1px 1px 0 red,
+    1px 1px 0 red; }
+	th {cursor: pointer; border-style: solid;}
+	th:hover {color: silver;}
+</style>
+<body>
+<p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><a 
+style="text-decoration: none; font-weight: bold; color: dodgerblue;" id="odjavaLink" href="#">Odjava</a></p>
+<p style="text-align: center; margin-top: 0px; margin-bottom: 0px;" id="profilLink"></p>
+
+<h2>Upravljanje korisnicima</h2>
+<div>
+		<h4>Izaberi nacin pretrage</h4>
+		<select id="nacinPretrage" name="comboBoxPretraga">
+			<option value="3" selected="selected">Nacin pretrage</option>
+			<option value="1">Korisnicko ime</option>
+			<option value="2">Uloga</option>			
+		</select>
+		<br/>
+		<br/>
+		
+		<input name="korimePretraga" type="text" id="korimePretragaInput" placeholder="Uneti korisnicko ime"/>
+		<select id="ulogaKorisnikaInput" name="ulogaKorisnikaPretraga">
+			<option value="3" selected="selected">Izaberi ulogu</option>
+			<option value="1">KORISNIK</option>
+			<option value="2">ADMIN</option>
+		</select>
+		
+		<br/>
+		<br/>
+		
+		<table border="1" id="korisniciTabela">
+			<tr>
+				<th onclick="sortTable(0)">Korisnicko ime</th>
+				<th onclick="sortTable(1)">Uloga</th>
+				<th>Datum i vreme registracije</th>
+			</tr>
+			</table>
+			<p><a href="Izvestavanje.html" style="text-decoration: none; font-weight: bold; color: dodgerblue;">Izvestavanje</a></p>
+</div>
+
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("korisniciTabela");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc"; 
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      nazivlink1 = rows[i].querySelectorAll("td,a")[n + 1];
+      nazivlink2 = rows[i + 1].querySelectorAll("td,a")[n + 1];
+      //console.log(datumlink1.innerHTML);
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+	if (dir == "asc" && x.innerHTML.startsWith('<a') && y.innerHTML.startsWith('<a')) {
+        if (nazivlink1.innerHTML.toLowerCase() > nazivlink2.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc" && x.innerHTML.startsWith('<a') && y.innerHTML.startsWith('<a')) {
+        if (nazivlink1.innerHTML.toLowerCase() < nazivlink2.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "asc") {
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+      } else if (dir == "desc") {
+          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+               //if so, mark as a switch and break the loop:
+               shouldSwitch = true;
+               break;
+             }
+           } 
+      
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;      
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
+</script>
+
+</body>
+</html>

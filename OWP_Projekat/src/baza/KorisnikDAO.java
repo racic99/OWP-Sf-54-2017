@@ -191,4 +191,136 @@ public class KorisnikDAO {
 		return false;
 	}
 	
+	public static boolean brisanjeKorisnika(String korime) {
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		try {
+			String query = "DELETE FROM korisnici WHERE korime = ?";
+
+			int index = 1;
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(index++, korime);
+
+			return pstmt.executeUpdate() == 1;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+
+		return false;
+	}
+	
+	public static boolean logickoBrisanjeKorisnika(String korime) {
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		try {
+			String query = "UPDATE korisnici SET aktivan = 0 WHERE korime = ? AND korime IN (SELECT korisnik FROM karte)";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++, korime);
+
+			return pstmt.executeUpdate() == 1;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+
+		return false;
+	}
+	
+	public static List<Korisnik> getKorime(String korime) {
+		List<Korisnik> korisnici = new ArrayList<>();
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT korime, lozinka, datumRegistracije, uloga, aktivan FROM "
+					+ "korisnici WHERE korime LIKE ? and aktivan = 1";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++, "%" + korime + "%");
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				index = 1;
+				String korisnicko = rset.getString(index++);
+				String lozinka = rset.getString(index++);
+				String datumRegistracije = rset.getString(index++);
+				TipKorisnika uloga = TipKorisnika.valueOf(rset.getString(index++));
+				boolean aktivan = rset.getBoolean(index++);
+
+				Korisnik korisnik = new Korisnik(korisnicko, lozinka, datumRegistracije, uloga, aktivan);
+				
+				korisnici.add(korisnik);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return korisnici;
+	}
+	
+	public static List<Korisnik> getUloge(String uloga) {
+		List<Korisnik> korisnici = new ArrayList<>();
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT korime, lozinka, datumRegistracije, uloga, aktivan FROM "
+					+ "korisnici WHERE uloga = ? and aktivan = 1";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++, uloga);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				index = 1;
+				String korime = rset.getString(index++);
+				String lozinka = rset.getString(index++);
+				String datumRegistracije = rset.getString(index++);
+				TipKorisnika ulogaK = TipKorisnika.valueOf(rset.getString(index++));
+				boolean aktivan = rset.getBoolean(index++);
+
+				Korisnik korisnik = new Korisnik(korime, lozinka, datumRegistracije, ulogaK, aktivan);
+				
+				korisnici.add(korisnik);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {rset.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+		
+		return korisnici;
+	}
+	
 }

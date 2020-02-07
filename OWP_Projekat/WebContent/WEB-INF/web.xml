@@ -129,4 +129,14 @@
     <servlet-name>NalogServlet</servlet-name>
     <url-pattern>/NalogServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpravljanjeKorisnicimaServlet</display-name>
+    <servlet-name>UpravljanjeKorisnicimaServlet</servlet-name>
+    <servlet-class>aplikacija.UpravljanjeKorisnicimaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpravljanjeKorisnicimaServlet</servlet-name>
+    <url-pattern>/UpravljanjeKorisnicimaServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

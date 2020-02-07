@@ -121,6 +121,11 @@ public class NalogServlet extends HttpServlet {
 					break;
 				}
 				case "delete":{
+					String korime = request.getParameter("korime");
+					if(!KorisnikDAO.logickoBrisanjeKorisnika(korime)) {
+						KorisnikDAO.brisanjeKorisnika(korime);
+					}
+					
 					break;
 				}
 			}

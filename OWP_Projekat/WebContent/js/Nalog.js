@@ -137,6 +137,8 @@ function getKorisnik(){
 			}else if (data.ulogaPrijavljenogKorisnika == 'ADMIN') {
 				var prijavljenKorisnik = data.prijavljenKorisnik;
 				console.log(prijavljenKorisnik.korime);
+				$('#adminInterfejs').append('<a href="UpravljanjeKorisnicima.html" style="text-decoration: none; font-weight: bold; color: dodgerblue;">Upravljanje korisnicima</a><br/>');
+				$('#adminInterfejs').append('<a href="Izvestavanje.html" style="text-decoration: none; font-weight: bold; color: dodgerblue;">Izvestavanje</a>');
 				if(prijavljenKorisnik.korime == korime){
 				$('#adminPrikaz').append(
 						'<form>' +
@@ -375,6 +377,27 @@ function getKorisnik(){
 					}
 					
 				});
+				
+				$('#brisanjeSubmit').on('click', function(event) {
+					params = {
+							'action': 'delete',
+							'korime': korime, 
+						};
+						$.post('NalogServlet', params, function(data) {
+							if (data.status == 'unauthenticated') {
+								window.location.replace('Login.html');
+								return;
+							}
+
+							if (data.status == 'success') {
+								window.location.replace('KorisnikProjekcije.html');
+								return;
+							}
+						});
+
+						event.preventDefault();
+						return false;
+					});
 				
 			}
 		}
