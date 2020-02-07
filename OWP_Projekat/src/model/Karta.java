@@ -7,20 +7,14 @@ public class Karta {
 	private int sediste;
 	private String datumVreme;
 	private String korisnik;
-	private boolean aktivan;
-	
-	public Karta() {
-		this.aktivan=true;
-	}
 
-	public Karta(int id, int projekcija, int sediste, String datumVreme, String korisnik, boolean aktivan) {
+	public Karta(int id, int projekcija, int sediste, String datumVreme, String korisnik) {
 		super();
 		this.id = id;
 		this.projekcija = projekcija;
 		this.sediste = sediste;
 		this.datumVreme = datumVreme;
 		this.korisnik = korisnik;
-		this.aktivan = aktivan;
 	}
 
 	public int getId() {
@@ -62,15 +56,5 @@ public class Karta {
 	public void setKorisnik(String korisnik) {
 		this.korisnik = korisnik;
 	}
-
-	public boolean isAktivan() {
-		return aktivan;
-	}
-
-	public void setAktivan(boolean aktivan) {
-		this.aktivan = aktivan;
-	}
-	
-	
 	
 }

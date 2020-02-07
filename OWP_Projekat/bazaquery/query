@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS tipovipr;
 DROP TABLE IF EXISTS sale;
 DROP TABLE IF EXISTS filmovi;
 DROP TABLE IF EXISTS projekcije;
+DROP TABLE IF EXISTS karte;
 
 CREATE TABLE korisnici (
 	korime VARCHAR(30) NOT NULL, 
@@ -63,10 +64,6 @@ INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPore
 INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Ljudi u crnom', 'John', 'Mark, Michael', 'Zanr2,Zanr4', '110', 'Amerikanci', 'USA', '2005', 'U crnom ljudi', 1);
 INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Boj na Kosovu', 'Jovan', 'Lazar, Milos', 'Zanr6', '200', 'Srbi', 'Srbija', '2004', 'Pobeda', 1);
 INSERT INTO filmovi(naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan) VALUES('Dokumentarni film', 'Carlos', '', 'Zanr7', '60', 'Dokumentani distributer', 'Argentina', '2020', 'Film o sumi', 1);
-
-
-
-
 
 CREATE TABLE projekcije (
             id INTEGER PRIMARY KEY,
@@ -137,3 +134,116 @@ INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) VALUES(
 --SELECT naziv,reziser,glumci,zanrovi,trajanje,distributer,zemljaPorekla,godinaProizvodnje,opis,aktivan FROM filmovi WHERE naziv LIKE ?;
 
 --SELECT id, film, tip, sala, datumVreme, cenaKarte, admin, aktivan FROM projekcije WHERE (strftime('%d',datumVreme) - strftime('%d','now'))=0;
+
+CREATE TABLE karte (
+             id INTEGER PRIMARY KEY,
+	projekcija int NOT NULL, 
+	sediste int NOT NULL, 
+             datumVremeProdaje datetime NOT NULL,
+	korisnik VARCHAR(30) NOT NULL
+);
+--korisnik
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (1,1,'2020-02-06 11:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (2,1,'2020-02-06 11:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (3,1,'2020-02-06 11:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (4,1,'2020-02-06 11:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (5,1,'2020-02-06 11:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (6,1,'2020-02-06 11:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (7,1,'2020-02-06 11:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (8,1,'2020-02-06 11:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (9,1,'2020-02-06 11:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (10,1,'2020-02-06 11:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (11,1,'2020-02-06 12:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (12,1,'2020-02-06 12:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (13,1,'2020-02-06 12:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (14,1,'2020-02-06 12:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (15,1,'2020-02-06 12:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (16,1,'2020-02-06 12:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (17,1,'2020-02-06 12:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (18,1,'2020-02-06 12:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (19,1,'2020-02-06 12:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (20,1,'2020-02-06 12:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (21,1,'2020-02-06 13:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (22,1,'2020-02-06 13:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (23,1,'2020-02-06 13:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (24,1,'2020-02-06 13:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (25,1,'2020-02-06 13:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (26,1,'2020-02-06 13:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (27,1,'2020-02-06 13:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (28,1,'2020-02-06 13:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (29,1,'2020-02-06 13:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (30,1,'2020-02-06 13:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (31,1,'2020-02-06 14:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (32,1,'2020-02-06 14:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (33,1,'2020-02-06 14:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (34,1,'2020-02-06 14:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (35,1,'2020-02-06 14:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (36,1,'2020-02-06 14:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (37,1,'2020-02-06 14:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (38,1,'2020-02-06 14:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (39,1,'2020-02-06 14:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (40,1,'2020-02-06 14:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (41,1,'2020-02-06 15:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (42,1,'2020-02-06 15:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (43,1,'2020-02-06 15:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (44,1,'2020-02-06 15:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (45,1,'2020-02-06 15:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (46,1,'2020-02-06 15:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (47,1,'2020-02-06 15:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (48,1,'2020-02-06 15:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (49,1,'2020-02-06 15:00:00','korisnik');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (50,1,'2020-02-06 15:00:00','korisnik');
+
+--korisnik2
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (1,1,'2020-02-06 16:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (2,1,'2020-02-06 16:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (3,1,'2020-02-06 16:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (4,1,'2020-02-06 16:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (5,1,'2020-02-06 16:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (6,1,'2020-02-06 16:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (7,1,'2020-02-06 16:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (8,1,'2020-02-06 16:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (9,1,'2020-02-06 16:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (10,1,'2020-02-06 16:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (11,1,'2020-02-06 17:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (12,1,'2020-02-06 17:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (13,1,'2020-02-06 17:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (14,1,'2020-02-06 17:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (15,1,'2020-02-06 17:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (16,1,'2020-02-06 17:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (17,1,'2020-02-06 17:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (18,1,'2020-02-06 17:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (19,1,'2020-02-06 17:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (20,1,'2020-02-06 17:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (21,1,'2020-02-06 18:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (22,1,'2020-02-06 18:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (23,1,'2020-02-06 18:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (24,1,'2020-02-06 18:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (25,1,'2020-02-06 18:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (26,1,'2020-02-06 18:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (27,1,'2020-02-06 18:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (28,1,'2020-02-06 18:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (29,1,'2020-02-06 18:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (30,1,'2020-02-06 18:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (31,1,'2020-02-06 19:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (32,1,'2020-02-06 19:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (33,1,'2020-02-06 19:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (34,1,'2020-02-06 19:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (35,1,'2020-02-06 19:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (36,1,'2020-02-06 19:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (37,1,'2020-02-06 19:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (38,1,'2020-02-06 19:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (39,1,'2020-02-06 19:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (40,1,'2020-02-06 19:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (41,1,'2020-02-06 20:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (42,1,'2020-02-06 20:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (43,1,'2020-02-06 20:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (44,1,'2020-02-06 20:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (45,1,'2020-02-06 20:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (46,1,'2020-02-06 20:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (47,1,'2020-02-06 20:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (48,1,'2020-02-06 20:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (49,1,'2020-02-06 20:00:00','korisnik2');
+INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) VALUES (50,1,'2020-02-06 20:00:00','korisnik2');
+
+--SELECT id, projekcija, sediste, datumVremeProdaje, korisnik FROM karte WHERE korisnik = ? ORDER BY datumVremeProdaje DESC

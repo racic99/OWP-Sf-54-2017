@@ -1,6 +1,7 @@
 $(document).ready(function() {	
 	
 var korime = window.location.search.slice(1).split('&')[0].split('=')[1];
+$('#divTabelaKarte').hide();
 
 $('#odjavaLink').on('click', function(event) {
 	$.get('LogoutServlet', function(data) {
@@ -41,6 +42,21 @@ function getKorisnik(){
 						'</table>' +
 					'</form>'			
 				);
+				
+				var karte = data.karteKorisnika;
+				var projekcije = data.projekcije;
+				var filmovi = data.filmovi;
+				for (k in karte) {
+					$('#karteTabela').append(
+							'<tr>' + 
+							'<td style="background-color : lightblue;">' + filmovi.find(x => x.id === projekcije.find(x => x.id === karte[k].projekcija).film).naziv +'</td>' +
+							'<td style="background-color : lightblue;"><a href="Karta.html?id=' + karte[k].id + '">' + karte[k].datumVreme + '</a></td>' + 
+						'</tr>' 
+					);
+				
+				}
+				
+				$('#divTabelaKarte').show();
 				
 				$('#izmenaButton').on('click', function(event) {
 					$('#korisnikIzmena').append(
@@ -143,6 +159,22 @@ function getKorisnik(){
 							'</table>' +
 						'</form>'			
 					);
+					
+					var karte = data.karteKorisnika;
+					var projekcije = data.projekcije;
+					var filmovi = data.filmovi;
+					for (k in karte) {
+						$('#karteTabela').append(
+								'<tr>' + 
+								'<td style="background-color : lightblue;">' + filmovi.find(x => x.id === projekcije.find(x => x.id === karte[k].projekcija).film).naziv +'</td>' +
+								'<td style="background-color : lightblue;"><a href="Karta.html?id=' + karte[k].id + '">' + karte[k].datumVreme + '</a></td>' + 
+							'</tr>' 
+						);
+					
+					}
+					
+					$('#divTabelaKarte').show();
+					
 				}
 				
 				$('#izmenaButtonAdmin').on('click', function(event) {

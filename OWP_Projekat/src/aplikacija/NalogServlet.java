@@ -10,8 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import baza.FilmDAO;
+import baza.KartaDAO;
 import baza.KorisnikDAO;
+import baza.ProjekcijaDAO;
+import model.Film;
+import model.Karta;
 import model.Korisnik;
+import model.Projekcija;
 import model.TipKorisnika;
 
 public class NalogServlet extends HttpServlet {
@@ -35,10 +41,19 @@ public class NalogServlet extends HttpServlet {
 
 		Korisnik korisnik = KorisnikDAO.get(korime);
 		
+		List<Karta> karte = KartaDAO.karteKorisnika(korime);
+		
+		List<Projekcija> projekcije = ProjekcijaDAO.getSve();
+		
+		List<Film> filmovi = FilmDAO.getAll();
+		
 		Map<String, Object> data = new LinkedHashMap<>();
 		data.put("korisnik", korisnik);
 		data.put("ulogaPrijavljenogKorisnika", prijavljenKorisnik.getUloga());
 		data.put("prijavljenKorisnik", prijavljenKorisnik);
+		data.put("karteKorisnika", karte);
+		data.put("projekcije", projekcije);
+		data.put("filmovi", filmovi);
 		
 		request.setAttribute("data", data);
 		request.getRequestDispatcher("./SuccessServlet").forward(request, response);
