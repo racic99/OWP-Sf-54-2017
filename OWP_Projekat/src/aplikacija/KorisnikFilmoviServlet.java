@@ -22,7 +22,7 @@ public class KorisnikFilmoviServlet extends HttpServlet {
 			request.getRequestDispatcher("./LogoutServlet").forward(request, response);
 			return;
 		}
-		Korisnik prijavljenKorisnik = KorisnikDAO.get(prijavljenKorisnikKorime);
+		Korisnik prijavljenKorisnik = KorisnikDAO.getPrijavljen(prijavljenKorisnikKorime);
 		if (prijavljenKorisnik == null) {
 			request.getRequestDispatcher("./LogoutServlet").forward(request, response);
 			return;

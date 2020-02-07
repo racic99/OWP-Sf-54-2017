@@ -1,10 +1,4 @@
  $(document).ready(function() {
-	 
-		history.pushState(null, null, location.href);
-	    window.onpopstate = function () {
-	        history.go(1);
-	    };
-		
 		
 		function ispisProfil(){
 			$.get('KorisnikFilmoviServlet', function(data){

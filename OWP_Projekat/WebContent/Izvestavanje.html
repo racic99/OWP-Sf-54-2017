@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<script src="js/jquery-3.3.1.js"></script>
+	<script src="js/Izvestavanje.js"></script>
+<title>Izvestavanje</title>
+</head>
+<style>
+	h2 {text-align: center; color: white; margin-bottom: 8px; margin-top: 8px;}
+	body {background-image : url("slike/bioskop.jpg"); background-repeat: no-repeat;
+		  background-size: cover; height: 100vh;}
+	table {background-color : dodgerblue; text-align: center; display: inline-block;}
+	td {background-color : lightblue;}
+	div {display: block; text-align: center;}
+	select {text-align:center; background-color: lightblue;}
+	th {cursor: pointer; border-style: solid;}
+	th:hover {color: silver;}
+</style>
+<body>
+<p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><a 
+style="text-decoration: none; font-weight: bold; color: dodgerblue;" id="odjavaLink" href="#">Odjava</a></p>
+<p style="text-align: center; margin-top: 0px; margin-bottom: 0px;" id="profilLink"></p>
+
+<h2>Izvestavanje</h2>
+<div>
+
+		<input type="date" id="datumOdInput"/> <input type="time" id="vremeOdInput"/> <input type="date" id="datumDoInput"/> <input type="time" id="vremeDoInput"/>
+		<input type="submit" value="Pretrazi" id="pretragaOpsegVremena"/>
+	
+		<br/>
+		<br/>
+		
+		<table border="1" id="izvestavanjeTabela">
+			<tr>
+				<th>Naziv filma</th>
+				<th onclick="sortTable(1)">Broj projekcija</th>
+				<th onclick="sortTable(2)">Broj prodatih karata</th>
+				<th onclick="sortTable(3)">Ukupna cena</th>
+				
+			</tr>
+			</table>
+			<p><a href="UpravljanjeKorisnicima.html" style="text-decoration: none; font-weight: bold; color: dodgerblue;">Upravljanje korisnicima</a></p>
+</div>
+
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("izvestavanjeTabela");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc"; 
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 2); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      broj1 = parseInt(x.innerHTML);
+      broj2 = parseInt(y.innerHTML);
+      //console.log(datumlink1.innerHTML);
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc" && !isNaN(broj1) && !isNaN(broj2)) {
+          if (broj1 > broj2) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch= true;
+              break;
+            }
+	}else if (dir == "desc" && !isNaN(broj1) && !isNaN(broj2)) {
+        if (broj1 < broj2) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch= true;
+            break;
+          }
+	} else if (dir == "asc") {
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+      } else if (dir == "desc") {
+          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+               //if so, mark as a switch and break the loop:
+               shouldSwitch = true;
+               break;
+             }
+           } 
+      
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;      
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
+</script>
+
+</body>
+</html>

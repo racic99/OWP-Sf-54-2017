@@ -22,7 +22,11 @@ public class UpravljanjeKorisnicimaServlet extends HttpServlet {
 			request.getRequestDispatcher("./LogoutServlet").forward(request, response);
 			return;
 		}
-		Korisnik prijavljenKorisnik = KorisnikDAO.get(prijavljenKorisnikKorime);
+		Korisnik prijavljenKorisnik = KorisnikDAO.getPrijavljen(prijavljenKorisnikKorime);
+		if (prijavljenKorisnik == null) {
+			request.getRequestDispatcher("./LogoutServlet").forward(request, response);
+			return;
+		}
 		
 		if(prijavljenKorisnik.getUloga().name().equals("KORISNIK")) {
 			request.getRequestDispatcher("./LogoutServlet").forward(request, response);
