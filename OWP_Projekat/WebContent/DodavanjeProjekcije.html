@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<script src="js/jquery-3.3.1.js"></script>
+	<script src="js/DodavanjeProjekcije.js"></script>
+<title>Dodavanje projekcije</title>
+</head>
+<style>
+	h2 {text-align: center; margin-bottom: 8px;}
+	body {background-color : lightyellow}
+	form {text-align: center; display: inline-block;}
+	a {text-decoration: none; font-weight: bold; color: dodgerblue;}
+	div {display: block; text-align: center;}
+	td {text-align: left;}
+</style>
+<body>
+<p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><a 
+style="text-decoration: none; font-weight: bold; color: dodgerblue;" id="odjavaLink" href="#">Odjava</a></p>
+<p style="text-align: center; margin-top: 0px; margin-bottom: 0px;" id="profilLink"></p>
+
+<h2>Dodavanje projekcije</h2>
+<div>
+	<form>
+		<table>
+			<tr><td>Film:</td><td><select id="filmInput" name="filmInput">
+			<option selected="selected">Izaberi film</option>
+		</select></td></tr>
+			<tr><td>Tip projekcije:</td><td><select id="tipProjekcijeInput" name="tipProjekcijeInput">
+			<option value="4" selected="selected">Izaberi tip projekcije</option>
+			<option value="1">2D</option>
+			<option value="2">3D</option>
+			<option value="3">4D</option>
+		</select></td></tr>
+			<tr><td>Sala:</td><td><select id="salaInput" name="salaInput">
+			<option selected="selected">Izaberi salu</option>
+			<option value="1">Mala sala</option>
+			<option value="2">Srednja sala</option>
+			<option value="3">Velika sala</option>
+		</select></td></tr>
+			<tr><td>Datum i vreme prikazivanja:</td><td><input type="date" id="datumInput"/><input type="time" id="vremeInput"/></td></tr>
+			<tr><td>Cena karte:</td><td><input type="text" name="cenaKarte" id="cenaKarteInput"/></td></tr>
+			<tr><td/><td align="left"><input style="background-color: dodgerblue; color: white;" type="submit" value="Dodaj projekciju" id="dodajProjekcijuSubmit"></td></tr>
+		</table>
+	</form>
+	<p><a href="UpravljanjeKorisnicima.html" style="text-decoration: none; font-weight: bold; color: dodgerblue;">Upravljanje korisnicima</a><br/>
+	<a href="Izvestavanje.html" style="text-decoration: none; font-weight: bold; color: dodgerblue;">Izvestavanje</a></p>
+</div>
+
+</body>
+</html>

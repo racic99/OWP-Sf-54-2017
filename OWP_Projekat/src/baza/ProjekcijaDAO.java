@@ -345,4 +345,39 @@ public class ProjekcijaDAO {
 		return projekcije;
 	}
 	
+	public static boolean add(Projekcija projekcija) {
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		try {
+			String query = "INSERT INTO projekcije(film,tip,sala,datumVreme,cenaKarte,admin,aktivan) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+
+			pstmt.setInt(index++, projekcija.getFilm());
+			pstmt.setInt(index++, projekcija.getTip());
+			pstmt.setInt(index++, projekcija.getSala());
+			pstmt.setString(index++, projekcija.getDatumVreme());
+			pstmt.setInt(index++, projekcija.getCenaKarte());
+			pstmt.setString(index++, projekcija.getAdministrator());
+			pstmt.setBoolean(index++, projekcija.isAktivan());
+			
+
+			return pstmt.executeUpdate() == 1;
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+
+		return false;
+	}
+	
 }
