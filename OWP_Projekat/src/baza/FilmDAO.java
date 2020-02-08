@@ -356,5 +356,44 @@ public class FilmDAO {
 		
 		return filmovi;
 	}
+	
+	public static boolean add(Film film) {
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		try {
+			String query = "INSERT INTO filmovi (naziv, reziser, glumci, zanrovi, trajanje, distributer, zemljaPorekla,"
+					+ " godinaProizvodnje, opis, aktivan) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+
+			pstmt.setString(index++, film.getNaziv());
+			pstmt.setString(index++, film.getReziser());
+			pstmt.setString(index++, film.getGlumci());
+			pstmt.setString(index++, film.getZanrovi());
+			pstmt.setString(index++, film.getTrajanje());
+			pstmt.setString(index++, film.getDistributer());
+			pstmt.setString(index++, film.getZemljaPorekla());
+			pstmt.setString(index++, film.getGodinaProizvodnje());
+			pstmt.setString(index++, film.getOpis());
+			pstmt.setBoolean(index++, film.isAktivan());
+			
+
+			return pstmt.executeUpdate() == 1;
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+
+		return false;
+	}
 
 }

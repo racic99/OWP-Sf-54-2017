@@ -149,4 +149,14 @@
     <servlet-name>IzvestavanjeServlet</servlet-name>
     <url-pattern>/IzvestavanjeServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DodavanjeFilmaServlet</display-name>
+    <servlet-name>DodavanjeFilmaServlet</servlet-name>
+    <servlet-class>aplikacija.DodavanjeFilmaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DodavanjeFilmaServlet</servlet-name>
+    <url-pattern>/DodavanjeFilmaServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
