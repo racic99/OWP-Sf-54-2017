@@ -20,7 +20,7 @@ public class ProjekcijaDAO {
 		ResultSet rset = null;
 		try {
 			String query = "SELECT id, film, tip, sala, datumVreme, cenaKarte, admin, aktivan "
-					+ "FROM projekcije WHERE aktivan = 1 AND (strftime('%d',datumVreme) - strftime('%d','now'))=0";
+					+ "FROM projekcije WHERE aktivan = 1 AND (strftime('%d',datumVreme) - strftime('%d','now'))=0 ORDER BY film, datumVreme";
 
 			pstmt = conn.prepareStatement(query);
 

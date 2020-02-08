@@ -11,18 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import baza.FilmDAO;
-import baza.KartaDAO;
 import baza.KorisnikDAO;
 import baza.ProjekcijaDAO;
 import model.Film;
-import model.Karta;
 import model.Korisnik;
 import model.Projekcija;
-import model.TipKorisnika;
 
-public class NalogServlet extends HttpServlet {
+public class FilmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String prijavljenKorisnikKorime = (String) request.getSession().getAttribute("prijavljenKorisnik");
@@ -36,28 +33,19 @@ public class NalogServlet extends HttpServlet {
 			return;
 		}
 
-		String korime = request.getParameter("korime");
+		String idFilma = request.getParameter("idFilma");
 		
-		if(prijavljenKorisnik.getUloga().name().equals("KORISNIK") && !(prijavljenKorisnik.getKorime().equals(korime))) {
-			request.getRequestDispatcher("./LogoutServlet").forward(request, response);
-			return;
-		}
-
-		Korisnik korisnik = KorisnikDAO.get(korime);
 		
-		List<Karta> karte = KartaDAO.karteKorisnika(korime);
+		
+		Film film = FilmDAO.get(idFilma);
 		
 		List<Projekcija> projekcije = ProjekcijaDAO.getSve();
 		
-		List<Film> filmovi = FilmDAO.getSve();
-		
 		Map<String, Object> data = new LinkedHashMap<>();
-		data.put("korisnik", korisnik);
+		data.put("film", film);
 		data.put("ulogaPrijavljenogKorisnika", prijavljenKorisnik.getUloga());
-		data.put("prijavljenKorisnik", prijavljenKorisnik);
-		data.put("karteKorisnika", karte);
+		data.put("prijavljenKorisnikKorime", prijavljenKorisnikKorime);
 		data.put("projekcije", projekcije);
-		data.put("filmovi", filmovi);
 		
 		request.setAttribute("data", data);
 		request.getRequestDispatcher("./SuccessServlet").forward(request, response);
@@ -65,6 +53,7 @@ public class NalogServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		String prijavljenKorisnikKorime = (String) request.getSession().getAttribute("prijavljenKorisnik");
 		if (prijavljenKorisnikKorime == null) {
 			request.getRequestDispatcher("./LogoutServlet").forward(request, response);
@@ -80,54 +69,44 @@ public class NalogServlet extends HttpServlet {
 			return;
 		}
 		
-		List<Korisnik> korisnici = KorisnikDAO.getAll();
-		
-		Map<String, Object> data = new LinkedHashMap<>();
-		data.put("korisnici", korisnici);	
-		
 		try {
 			String action = request.getParameter("action");
 			switch (action) {
-				case "izmenaKorisnika": {		
-					String lozinkaKorisnik = request.getParameter("lozinkaKorisnik");
+				case "izmenaFilma": {
+					String naziv = request.getParameter("naziv");
+					String reziser = request.getParameter("reziser");
+					String glumci = request.getParameter("glumci");
+					String zanrovi = request.getParameter("zanrovi");
+					String trajanje = request.getParameter("trajanje");
+					String distributer = request.getParameter("distributer");
+					String zemljaPorekla = request.getParameter("zemljaPorekla");
+					String godinaProizvodnje = request.getParameter("godinaProizvodnje");
+					String opis = request.getParameter("opis");
 					
-					String korimeKorisnik = request.getParameter("korimeKorisnik");
+					String idFilma = request.getParameter("idFilma");
+					Film film = FilmDAO.get(idFilma);
 					
-					String uloga = request.getParameter("uloga");	
+					film.setNaziv(naziv);
+					film.setReziser(reziser);
+					film.setGlumci(glumci);
+					film.setZanrovi(zanrovi);
+					film.setTrajanje(trajanje);
+					film.setDistributer(distributer);
+					film.setZemljaPorekla(zemljaPorekla);
+					film.setGodinaProizvodnje(godinaProizvodnje);
+					film.setOpis(opis);
 					
-					Korisnik korisnik = KorisnikDAO.get(korimeKorisnik);
-
-					korisnik.setLozinka(lozinkaKorisnik);
-					korisnik.setUloga(TipKorisnika.valueOf(uloga));
-					
-					if(korimeKorisnik == null) {
+					if(idFilma == null) {
 						request.getRequestDispatcher("./FailServlet").forward(request, response);
 						return;
 					}
-					KorisnikDAO.izmenaKorisnika(korisnik);
-					break;
-				}
-				case "izmenaKorisnikaAdmin": {
-					String lozinka = request.getParameter("lozinka");
-					String uloga = request.getParameter("uloga");	
-					
-					String korimeKorisnik = request.getParameter("korimeKorisnik");
-					Korisnik korisnik = KorisnikDAO.get(korimeKorisnik);
-					
-					korisnik.setLozinka(lozinka);
-					korisnik.setUloga(TipKorisnika.valueOf(uloga));
-					
-					if(korimeKorisnik == null) {
-						request.getRequestDispatcher("./FailServlet").forward(request, response);
-						return;
-					}
-					KorisnikDAO.izmenaKorisnika(korisnik);
+					FilmDAO.izmenaFilma(film);
 					break;
 				}
 				case "delete":{
-					String korime = request.getParameter("korime");
-					if(!KorisnikDAO.logickoBrisanjeKorisnika(korime)) {
-						KorisnikDAO.brisanjeKorisnika(korime);
+					String idFilma = request.getParameter("idFilma");
+					if(!FilmDAO.logickoBrisanjeFilma(idFilma)) {
+						FilmDAO.brisanjeFilma(idFilma);
 					}
 					
 					break;
@@ -139,7 +118,7 @@ public class NalogServlet extends HttpServlet {
 			ex.printStackTrace();
 			request.getRequestDispatcher("./FailServlet").forward(request, response);
 		}
-
+		
 	}
 
 }

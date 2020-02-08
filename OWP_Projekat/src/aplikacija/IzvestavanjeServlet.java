@@ -40,7 +40,7 @@ public class IzvestavanjeServlet extends HttpServlet {
 		String datum2 = request.getParameter("datum2");
 		
 		List<Izvestavanje> izvestavanje = IzvestavanjeDAO.getAll(datum1, datum2);
-		List<Film> filmovi = FilmDAO.getAll();
+		List<Film> filmovi = FilmDAO.getSve();
 
 		
 		Map<String, Object> data = new LinkedHashMap<>();

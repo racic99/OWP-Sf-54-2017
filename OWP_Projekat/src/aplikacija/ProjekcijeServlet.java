@@ -32,7 +32,7 @@ public class ProjekcijeServlet extends HttpServlet {
 		String datum1 = request.getParameter("datum1");
 		String datum2 = request.getParameter("datum2");
 		
-		List<Film> filmovi = FilmDAO.getAll();
+		List<Film> filmovi = FilmDAO.getSve();
 		List<Sala> sale = SalaDAO.getAll();
 		List<TipProjekcije> tipoviProjekcije = TipProjekcijeDAO.getAll();
 		List<Projekcija> projekcije = ProjekcijaDAO.getAll();
