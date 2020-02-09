@@ -98,7 +98,7 @@ $(document).ready(function() {
 					if(Date.parse(projekcija.datumVreme) > new Date() && projekcija.aktivan){
 						$('#korisnikPrikaz').append(
 								'</br>' +
-							'<button style="background-color: dodgerblue; color: white;" type="button" id="kupiKartuButton">Kupi kartu</button>' 
+								'<p><a style="text-decoration: none; font-weight: bold; color: dodgerblue;" href="KupovinaKarteFaza2.html?id='+ idProjekcije +'">Kupi kartu</a></p>'
 						);
 					}
 					

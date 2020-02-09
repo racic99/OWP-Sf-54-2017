@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Karta;
+import model.Projekcija;
 
 public class KartaDAO {
 	
@@ -181,6 +182,37 @@ public class KartaDAO {
 			pstmt.setString(index++, idKarte);
 
 			return pstmt.executeUpdate() == 1;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+
+		return false;
+	}
+	
+	public static boolean add(Karta karta) {
+		
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		try {
+			String query = "INSERT INTO karte(projekcija,sediste,datumVremeProdaje,korisnik) "
+					+ "VALUES (?, ?, ?, ?)";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+
+			pstmt.setInt(index++, karta.getProjekcija());
+			pstmt.setInt(index++, karta.getSediste());
+			pstmt.setString(index++, karta.getDatumVreme());
+			pstmt.setString(index++, karta.getKorisnik());
+
+			return pstmt.executeUpdate() == 1;
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {

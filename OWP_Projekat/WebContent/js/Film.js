@@ -71,8 +71,7 @@ ispisProfil();
 							if(Date.parse(projekcije[p].datumVreme) > new Date()){
 								$('#korisnikPrikaz').append(
 										'</br>' +
-									'<button style="background-color: dodgerblue; color: white;" type="button" id="kupiKartuButton">Kupi kartu</button>' 
-								);
+										'<p><a style="text-decoration: none; font-weight: bold; color: dodgerblue;" href="KupovinaKarteFaza1.html?id='+ idFilma +'">Kupi kartu</a></p>'								);
 								break;
 							}
 						}
