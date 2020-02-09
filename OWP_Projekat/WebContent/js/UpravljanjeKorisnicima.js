@@ -51,7 +51,7 @@ $.get('UpravljanjeKorisnicimaServlet', function(data){
 			korisniciTabela.append(
 					
 					'<tr>' + 
-						'<td><a href="Nalog.html?id=' + korisnici[k].korime + '">' + korisnici[k].korime + '</a></td>' + 
+						'<td><a href="Nalog.html?username=' + korisnici[k].korime + '">' + korisnici[k].korime + '</a></td>' + 
 						'<td>' + korisnici[k].uloga + '</td>' + 
 						'<td>' + korisnici[k].datumRegistracije + '</td>' +  
 					'</tr>' 
@@ -100,7 +100,7 @@ korimePretraga.keyup(function(event) {
 					korisniciTabela.append(
 							
 							'<tr>' + 
-								'<td><a href="Nalog.html?id=' + korisnici[k].korime + '">' + korisnici[k].korime + '</a></td>' + 
+								'<td><a href="Nalog.html?username=' + korisnici[k].korime + '">' + korisnici[k].korime + '</a></td>' + 
 								'<td>' + korisnici[k].uloga + '</td>' + 
 								'<td>' + korisnici[k].datumRegistracije + '</td>' +  
 							'</tr>' 
@@ -115,7 +115,7 @@ korimePretraga.keyup(function(event) {
 				korisniciTabela.append(
 						
 						'<tr>' + 
-							'<td><a href="Nalog.html?id=' + korisnici[k].korime + '">' + korisnici[k].korime + '</a></td>' + 
+							'<td><a href="Nalog.html?username=' + korisnici[k].korime + '">' + korisnici[k].korime + '</a></td>' + 
 							'<td>' + korisnici[k].uloga + '</td>' + 
 							'<td>' + korisnici[k].datumRegistracije + '</td>' +  
 						'</tr>' 
@@ -151,7 +151,7 @@ ulogaKorisnikaPretraga.change(function(){
 					korisniciTabela.append(
 							
 							'<tr>' + 
-								'<td><a href="Nalog.html?id=' + korisnici[k].korime + '">' + korisnici[k].korime + '</a></td>' + 
+								'<td><a href="Nalog.html?username=' + korisnici[k].korime + '">' + korisnici[k].korime + '</a></td>' + 
 								'<td>' + korisnici[k].uloga + '</td>' + 
 								'<td>' + korisnici[k].datumRegistracije + '</td>' +  
 							'</tr>' 
@@ -166,7 +166,7 @@ ulogaKorisnikaPretraga.change(function(){
 				korisniciTabela.append(
 						
 						'<tr>' + 
-							'<td><a href="Nalog.html?id=' + korisnici[k].korime + '">' + korisnici[k].korime + '</a></td>' + 
+							'<td><a href="Nalog.html?username=' + korisnici[k].korime + '">' + korisnici[k].korime + '</a></td>' + 
 							'<td>' + korisnici[k].uloga + '</td>' + 
 							'<td>' + korisnici[k].datumRegistracije + '</td>' +  
 						'</tr>' 

@@ -2,6 +2,9 @@ $(document).ready(function() {
 	
 	var idProjekcije = window.location.search.slice(1).split('&')[0].split('=')[1];
 	
+	$('#karteTabela').hide();
+	$('#karteZaProjekciju').hide();
+	
     function ispisProfil(){
 		$.get('ProjekcijaServlet', function(data){
 			
@@ -46,8 +49,6 @@ $(document).ready(function() {
 				var filmovi = data.filmovi;
 				var sale = data.sale;
 				var tipovi = data.tipoviProjekcije;
-				
-				//var projekcije = data.projekcije;
 				
 				$('#pocetna').append('<a href="KorisnikProjekcije.html">Pocetna stranica</a>');
 				document.title = "Projekcija - " + projekcija.datumVreme;
@@ -94,7 +95,7 @@ $(document).ready(function() {
 						}			
 					}
 					
-					if(Date.parse(projekcija.datumVreme) > new Date()){
+					if(Date.parse(projekcija.datumVreme) > new Date() && projekcija.aktivan){
 						$('#korisnikPrikaz').append(
 								'</br>' +
 							'<button style="background-color: dodgerblue; color: white;" type="button" id="kupiKartuButton">Kupi kartu</button>' 
@@ -120,6 +121,22 @@ $(document).ready(function() {
 							'</table>' +
 						'</form>'			
 					);
+					
+					$('#karteZaProjekciju').show();
+					
+					var karte = data.karteZaProjekciju;
+					var projekcije = data.projekcije;
+					for (k in karte) {
+						$('#karteTabela').append(
+							'<tr>' + 
+								'<td style="background-color : lightblue;"><a href="Karta.html?id=' + karte[k].id + '">' + karte[k].datumVreme + '</a></td>' + 
+								'<td style="background-color : lightblue;"><a href="Nalog.html?username=' + karte[k].korisnik + '">' + karte[k].korisnik +'</a></td>' +
+							'</tr>' 
+						);
+					
+					}
+					
+					$('#karteTabela').show();
 					
 					for(f in filmovi){
 						if(filmovi[f].id == projekcija.film){
@@ -157,11 +174,7 @@ $(document).ready(function() {
 					}
 					
 					$('#brisanjeSubmit').on('click', function(event) {
-						params = {
-								'action': 'delete',
-								'idFilma': idFilma, 
-							};
-							$.post('FilmServlet', params, function(data) {
+							$.post('ProjekcijaServlet', {'idProjekcije': idProjekcije}, function(data) {
 								if (data.status == 'unauthenticated') {
 									window.location.replace('Login.html');
 									return;

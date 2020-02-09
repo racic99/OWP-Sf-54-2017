@@ -64,7 +64,7 @@ public class ProjekcijaDAO {
 		return projekcije;
 	}
 	
-	public static List<Projekcija> getSve() {
+	public static List<Projekcija> getSveAktivne() {
 		List<Projekcija> projekcije = new ArrayList<>();
 
 		ConnectionManager.open();
@@ -75,6 +75,60 @@ public class ProjekcijaDAO {
 		try {
 			String query = "SELECT id, film, tip, sala, datumVreme, cenaKarte, admin, aktivan "
 					+ "FROM projekcije WHERE aktivan = 1";
+
+			pstmt = conn.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				int index = 1;
+				int id = rset.getInt(index++);
+				int film = rset.getInt(index++);
+				int tip = rset.getInt(index++);
+				int sala = rset.getInt(index++);
+				String datumVreme = rset.getString(index++);
+				int cenaKarte = rset.getInt(index++);
+				String administrator = rset.getString(index++);
+				boolean aktivan = rset.getBoolean(index++);
+
+				Projekcija projekcija = new Projekcija(id, film, tip, sala, datumVreme, cenaKarte, administrator, aktivan);
+				
+				projekcije.add(projekcija);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+			} catch (Exception ex1) {
+				ex1.printStackTrace();
+			}
+			try {
+				rset.close();
+			} catch (Exception ex1) {
+				ex1.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (Exception ex1) {
+				ex1.printStackTrace();
+			}
+		}
+
+		return projekcije;
+	}
+	
+	public static List<Projekcija> getSve() {
+		List<Projekcija> projekcije = new ArrayList<>();
+
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			String query = "SELECT id, film, tip, sala, datumVreme, cenaKarte, admin, aktivan "
+					+ "FROM projekcije";
 
 			pstmt = conn.prepareStatement(query);
 
@@ -420,6 +474,54 @@ public class ProjekcijaDAO {
 		}
 
 		return null;
+	}
+	
+	public static boolean brisanjeProjekcije(String idProjekcije) {
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		try {
+			String query = "DELETE FROM projekcije WHERE id = ?";
+
+			int index = 1;
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(index++, idProjekcije);
+
+			return pstmt.executeUpdate() == 1;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+
+		return false;
+	}
+	
+	public static boolean logickoBrisanjeProjekcije(String idProjekcije) {
+		ConnectionManager.open();
+		
+		Connection conn = ConnectionManager.getConnection();
+
+		PreparedStatement pstmt = null;
+		try {
+			String query = "UPDATE projekcije SET aktivan = 0 WHERE id = ? AND id IN (SELECT projekcija FROM karte)";
+
+			pstmt = conn.prepareStatement(query);
+			int index = 1;
+			pstmt.setString(index++, idProjekcije);
+
+			return pstmt.executeUpdate() == 1;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {pstmt.close();} catch (Exception ex1) {ex1.printStackTrace();}
+			try {conn.close();} catch (Exception ex1) {ex1.printStackTrace();}
+		}
+
+		return false;
 	}
 	
 }
