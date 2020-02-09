@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 	<script src="js/jquery-3.3.1.js"></script>
-	<script src="js/Film.js"></script>
-<title>Film</title>
+	<script src="js/Projekcija.js"></script>
+<title>Projekcija</title>
 </head>
 <style>
 	h2 {text-align: center; margin-bottom: 8px;}
@@ -15,7 +15,7 @@
 </style>
 <body>
 
-	<h2 id="imeFilma"></h2>
+	<h2 id="imeProjekcije"></h2>
 	<p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><a 
 	   style="text-decoration: none; font-weight: bold; color: dodgerblue;" id="odjavaLink" href="#">Odjava</a></p>
 	   <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;" id="profilLink"></p>
@@ -27,11 +27,19 @@
 
 </div>
 
-<div id="adminIzmena">
-
+<div id=divTabelaKarte>
+		<p>Karte korisnika</p>
+		<table border="1" id="karteTabela" style="background-color : dodgerblue; text-align: center; display: inline-block;">
+			<tr>
+				<th>Datum prodaje</th>
+				<th>Kupac</th>
+			</tr>
+			</table>
 </div>
 
 <p id="adminInterfejs" style="text-align: center;"></p>
+
+
 
 </body>
 </html>

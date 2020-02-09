@@ -179,4 +179,14 @@
     <servlet-name>DodavanjeProjekcijeServlet</servlet-name>
     <url-pattern>/DodavanjeProjekcijeServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProjekcijaServlet</display-name>
+    <servlet-name>ProjekcijaServlet</servlet-name>
+    <servlet-class>aplikacija.ProjekcijaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProjekcijaServlet</servlet-name>
+    <url-pattern>/ProjekcijaServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
